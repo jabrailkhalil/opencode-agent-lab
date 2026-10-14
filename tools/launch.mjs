@@ -3,7 +3,18 @@ import path from 'node:path';
 import net from 'node:net';
 import {spawn,spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),open=process.argv.includes('--open');
+import crypto from 'node:crypto';
+import {inspectProcess,ownsProcess} from './runtime-platform.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),open=process.argv.includes('--open'),fresh=process.argv.includes('--fresh');
+const lockFile=path.join(root,'.runtime/launch.lock');fs.mkdirSync(path.dirname(lockFile),{recursive:true});
+const lock={id:crypto.randomUUID(),pid:process.pid,executable:process.execPath,startedAt:Date.now()};
+try{fs.writeFileSync(lockFile,JSON.stringify(lock),{flag:'wx'});}catch(error){
+ if(error.code!=='EEXIST')throw error;
+ const previous=JSON.parse(fs.readFileSync(lockFile,'utf8'));
+ if(ownsProcess(previous,inspectProcess(previous.pid))){console.log('Launch is already in progress. No second reset was started.');process.exit(0);}
+ fs.unlinkSync(lockFile);fs.writeFileSync(lockFile,JSON.stringify(lock),{flag:'wx'});
+}
+process.on('exit',()=>{try{if(JSON.parse(fs.readFileSync(lockFile,'utf8')).id===lock.id)fs.unlinkSync(lockFile);}catch{}});
 const ports=[4096,4097,4191,4192,4201,4216,4217];
 const urls=['http://127.0.0.1:4201/welcome','http://127.0.0.1:4201/?profile=claude#intro','http://127.0.0.1:4201/?profile=qwen#intro','http://127.0.0.1:4201/parallel'];
 function openTabs(){
@@ -12,11 +23,20 @@ function openTabs(){
  else if(process.platform==='darwin')spawn('open',urls,{detached:true,stdio:'ignore'}).unref();
  else for(const url of urls)spawn('xdg-open',[url],{detached:true,stdio:'ignore'}).unref();
 }
+async function freshPair(){
+ if(!fresh)return;
+ const workshop=JSON.parse(fs.readFileSync(path.join(root,'data/workshop.json'),'utf8'));
+ const profiles=[workshop.presentation.leftRun,workshop.presentation.rightRun].map(id=>{const run=workshop.runs.find(r=>r.id===id);return {profile:run.profile,checkpoint:run.stages[0].id};});
+ const r=await fetch('http://127.0.0.1:4201/api/replay/reset',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({requestId:lock.id,profiles}),signal:AbortSignal.timeout(30000)}),result=await r.json();
+ if(!r.ok)throw Error(result.error||'Fresh start failed.');
+ console.log('Fresh pair ready: new empty sessions, both branches at step zero, paid API calls: 0.');
+}
 const alive=port=>new Promise(resolve=>{const s=net.connect(port,'127.0.0.1');s.once('connect',()=>{s.destroy();resolve(true)});s.once('error',()=>resolve(false));setTimeout(()=>{s.destroy();resolve(false)},500)});
+async function launch(){
 const occupied=await Promise.all(ports.map(alive));
 if(occupied.some(Boolean)){
  let own=false;try{const h=await fetch('http://127.0.0.1:4201/health',{signal:AbortSignal.timeout(2000)}).then(r=>r.json());own=h.app==='opencode-agent-lab'&&path.resolve(h.root)===root;}catch{}
- if(own&&occupied.every(Boolean)){openTabs();console.log('Already running. Progress preserved. For a new recording use «Начать оба с нуля» in /parallel.\n'+urls.join('\n'));process.exit(0);}
+ if(own&&occupied.every(Boolean)){await freshPair();openTabs();console.log((fresh?'Both branches reset.':'Already running. Progress preserved. For a new recording use «Начать оба с нуля» in /parallel.')+'\n'+urls.join('\n'));return;}
  throw new Error(own?'The previous launch is incomplete. Run npm stop, then npm start.':'A required port is occupied by another process. Use npm run doctor; do not stop unrelated services.');
 }
 try{
@@ -53,8 +73,10 @@ persist();
 const deadline=Date.now()+15000;
 while(Date.now()<deadline){if((await Promise.all(ports.map(alive))).every(Boolean))break;await new Promise(r=>setTimeout(r,300));}
 if(!(await Promise.all(ports.map(alive))).every(Boolean))throw new Error('Services did not start. See .runtime/logs.');
-openTabs();
+await freshPair();openTabs();
 console.log(urls.join('\n'));
 }catch(error){spawnSync(process.execPath,[path.join(root,'tools/stop.mjs')],{cwd:root,stdio:'inherit'});throw error;}
+}
+await launch();
 
 

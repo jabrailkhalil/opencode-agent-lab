@@ -20,6 +20,7 @@ jobs:
       - run: npm test
       - run: npm run doctor -- --json
       - run: npm start
+      - run: npm start -- --fresh
       - run: npm run doctor -- --json
       - run: npm run smoke -- --full
       - run: npm stop
