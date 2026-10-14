@@ -24,3 +24,5 @@ jobs:
       - run: npm run smoke -- --full
       - run: npm stop
         if: always()
+      - run: npm run doctor -- --json --stopped
+        if: always()

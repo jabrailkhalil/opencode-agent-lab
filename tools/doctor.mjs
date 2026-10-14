@@ -24,7 +24,7 @@ for(const port of [4096,4097,4191,4192,4201,4216,4217]){
 }
 let own=false;
 if(used.includes(4201))try{const health=await fetch('http://127.0.0.1:4201/health',{signal:AbortSignal.timeout(1500)}).then(r=>r.json());own=health.app==='opencode-agent-lab'&&path.resolve(health.root)===root;}catch{}
-add('Local ports',!used.length||own,used.length?(own?'This copy is already running: ':'Occupied by another process: ')+used.join(', '):'All seven ports are free');
+add('Local ports',process.argv.includes('--stopped')?!used.length:!used.length||own,used.length?(own?'This copy is already running: ':'Occupied by another process: ')+used.join(', '):'All seven ports are free');
 const report={ready:checks.every(c=>c.ok),platform:process.platform,architecture:process.arch,checks,paidApiCalls:0};
 if(process.argv.includes('--json'))console.log(JSON.stringify(report,null,2));else for(const c of checks)console.log((c.ok?'OK   ':'FAIL ')+c.name+': '+c.detail);
 if(!report.ready)process.exitCode=1;

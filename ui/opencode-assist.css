@@ -2,6 +2,6 @@
 #vtb-demo-assist .assist-info{flex:1;min-width:0;display:grid;gap:3px}#vtb-demo-assist strong{font-size:13px;color:#a9c1e2}#vtb-demo-assist small{font-size:12px;color:#9eafc6}#vtb-demo-assist button{font:inherit;padding:9px 14px;border:1px solid #4e6890;border-radius:7px;background:#2b4770;color:white;cursor:pointer;white-space:nowrap}#vtb-demo-assist button:disabled{opacity:.45;cursor:default}#vtb-demo-assist a{color:#bbd3f5;white-space:nowrap}#vtb-demo-assist [hidden]{display:none!important}#vtb-demo-assist button:focus-visible,#vtb-demo-assist a:focus-visible{outline:2px solid #b6d6ff;outline-offset:3px}body:has(#vtb-demo-assist){display:flex;flex-direction:column;height:100dvh}body:has(#vtb-demo-assist)>#root{height:auto!important;min-height:0;flex:1}@media(max-width:800px){#vtb-demo-assist{flex-wrap:wrap;gap:8px;padding:9px 12px}#vtb-demo-assist .assist-info{flex-basis:100%}}
 #vtb-demo-assist .assist-info{overflow-wrap:anywhere}
 .demo-embedded #vtb-demo-assist{display:none}
-.demo-recording [data-titlebar-tab][data-active="false"]{display:none!important}
+.demo-recording [data-titlebar-tab-slot][data-active="false"]{display:none!important}
 .demo-embedded #vtb-demo-assist [data-assist-console]{display:none}
 .demo-embedded #vtb-demo-assist [data-assist-message]{font-size:11px}
