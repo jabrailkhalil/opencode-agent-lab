@@ -206,6 +206,7 @@ const server=http.createServer(async(req,res)=>{
    const files={'/comparison':'comparison.html','/comparison.js':'comparison.js','/comparison.css':'comparison.css','/demo-clock.js':'demo-clock.js','/workshop-extras.js':'workshop-extras.js','/':'workshop.html','/archive':'checkpoint-console.html','/workshop.js':'workshop.js','/workshop.css':'workshop.css','/workshop-flow.js':'workshop-flow.js','/demo-flow.js':'demo-flow.js','/checkpoint-console.js':'checkpoint-console.js','/checkpoint-console.css':'checkpoint-console.css','/checkpoint-results.js':'checkpoint-results.js','/checkpoint-markdown.js':'checkpoint-markdown.js'};
    Object.assign(files,{'/run-metrics.js':'run-metrics.js','/agent-flow-spec.svg':'agent-flow-spec.svg','/agent-flow-direct.svg':'agent-flow-direct.svg','/spec-ui-contract.md':'spec-ui-contract.md','/material-routes.js':'material-routes.js','/comparison-sections.js':'comparison-sections.js','/parallel':'parallel.html','/parallel.js':'parallel.js','/parallel.css':'parallel.css','/legacy-qwen.js':'legacy-qwen.js','/legacy-qwen.css':'legacy-qwen.css'});
    files['/welcome']='welcome.html';
+   files['/qwen3-coder-preview.png']='assets/qwen3-coder-preview.png';
    files['/agent-workflows.js']='agent-workflows.js';
    for(const id of ['sonnet-spec','sonnet-direct','qwen-spec','qwen-direct'])files['/agent-flow-'+id+'.svg']='agent-flow-'+id+'.svg';
    if(url.pathname==='/'&&!url.searchParams.has('profile')&&!url.searchParams.has('run'))files['/']='welcome.html';

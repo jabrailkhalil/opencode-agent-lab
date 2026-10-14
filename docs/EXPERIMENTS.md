@@ -6,7 +6,7 @@
 |---|---|---|---:|---:|---:|---:|
 | Sonnet + OpenSpec | anthropic/claude-sonnet-5.5 | да | 172 | 5 133 164 | 238 116 | $12,65 |
 | Sonnet, прямые задания | anthropic/claude-sonnet-5.5 | нет | 131 | 2 697 063 | 174 123 | $7,14 |
-| Старый Qwen Coder | qwen/qwen3-coder | нет | 544 | 26 928 080 | 238 022 | $17,30 |
+| Qwen3 Coder, прямые задания | qwen/qwen3-coder | нет | 544 | 26 928 080 | 238 022 | $17,30 |
 | Qwen, прямые задания | qwen/qwen3.8-flash | нет | 164 | 3 623 308 | 153 495 | $0,62 |
 | Qwen + OpenSpec | qwen/qwen3.8-flash | да | 268 | 8 556 572 | 200 858 | $1,38 |
 

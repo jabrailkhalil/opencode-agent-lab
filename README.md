@@ -10,7 +10,7 @@
 |---|---|---|---|
 | 1 | Sonnet 5.5 + OpenSpec | Со спецификацией | `sdd-05…sdd-19`, общая UI-версия `sdd-ui-20` |
 | 2 | Sonnet 5.5 | Прямые задания | `direct-03…direct-15` |
-| 3 | Qwen3 Coder 480B A35B | Архивный прогон | `qwen-00…qwen-15` |
+| 3 | Qwen3 Coder 480B A35B | Прямые задания | `qwen-00…qwen-15` |
 | 4 | Qwen 3.8 Flash | Прямые задания | `flash-02…flash-13` |
 | 5 | Qwen 3.8 Flash + OpenSpec | Со спецификацией | `qspec-00…qspec-11`, общая UI-версия `qspec-ui-12` |
 
