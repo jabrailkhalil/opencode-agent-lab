@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Поток — трекер задач и планировщик нагрузки</title>
+  <link rel="stylesheet" href="vendor/tabler/tabler.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page" id="app" data-testid="app" data-ready="false">
+  <aside class="navbar side" aria-label="Основная навигация">
+    <div class="side-inner">
+      <a class="navbar-brand" href="./" aria-label="Поток — на главную">Поток</a>
+      <div class="side-views" role="group" aria-label="Представление">
+        <button type="button" class="btn btn-outline-primary" data-testid="view-board" aria-pressed="true">Доска</button>
+        <button type="button" class="btn btn-outline-primary" data-testid="view-employees" aria-pressed="false">По сотрудникам</button>
+      </div>
+      <button type="button" class="btn btn-outline-secondary side-reset" data-testid="reset-demo">Восстановить учебный пример</button>
+    </div>
+  </aside>
+  <div class="page-wrapper">
+    <main class="page-body main" id="main">
+      <div class="container-xl">
+        <div id="notice-slot" aria-live="polite"></div>
+        <header class="page-header-row">
+          <div>
+            <div class="page-pretitle">Поток</div>
+            <h1 class="page-title">План команды</h1>
+          </div>
+          <div class="week-row" role="group" aria-label="Выбор недели">
+            <button type="button" class="btn" data-testid="prev-week">← Прошлая</button>
+            <strong class="week-label" data-testid="week-label" aria-live="polite"></strong>
+            <button type="button" class="btn" data-testid="next-week">Следующая →</button>
+            <button type="button" class="btn btn-outline-secondary" data-testid="current-week">Текущая неделя</button>
+          </div>
+        </header>
+        <div class="actions">
+          <button type="button" class="btn btn-primary" data-testid="new-task">Новая задача</button>
+          <button type="button" class="btn btn-outline-primary" data-testid="propose-plan">Предложить распределение</button>
+        </div>
+        <section class="metrics" id="metrics" aria-label="Метрики недели"></section>
+        <section class="team" id="team" aria-label="Сотрудники: нагрузка и прогресс"></section>
+        <section class="card filters" aria-label="Поиск и фильтр">
+          <div class="card-body filters-grid">
+            <div>
+              <label class="form-label" for="search">Поиск по названию и описанию</label>
+              <input class="form-control" id="search" type="search" data-testid="search" autocomplete="off" placeholder="Например, витрина">
+            </div>
+            <div>
+              <label class="form-label" for="filter-assignee">Ответственный</label>
+              <select class="form-select" id="filter-assignee" data-testid="filter-assignee"></select>
+            </div>
+          </div>
+        </section>
+        <div id="confirm-slot"></div>
+        <div id="form-slot"></div>
+        <div id="plan-slot"></div>
+        <div id="live" class="visually-hidden" aria-live="polite" role="status"></div>
+        <section id="board" class="board" data-testid="board" aria-label="Доска задач"></section>
+        <section id="employees-view" class="groups" data-testid="employees-view" aria-label="Задачи по сотрудникам" hidden></section>
+      </div>
+    </main>
+  </div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

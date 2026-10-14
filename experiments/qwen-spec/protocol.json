@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-13",
+  "model": "qwen/qwen3.8-flash",
+  "comparison": "Same Qwen model and existing baseline inputs; added OpenSpec workflow. One run per condition, recorded on different days.",
+  "baseline": "qwen-direct / flash",
+  "sameInputs": [
+    {
+      "file": "docs/BRIEF.md",
+      "sha256": "fd83c9f574452bccec30cea50a4039caad96f92ed519ce7f4a32b5dfa3cf80b2"
+    },
+    {
+      "file": "docs/INTERFACES.md",
+      "sha256": "5219cbb4a6a123b43959febdf7fc9cb1a6e7d057fff554df5c4572eedb6e6fed"
+    },
+    {
+      "file": "docs/DESIGN-REFERENCE.md",
+      "sha256": "fbf4039dd4169ca7e03063d5b3fcc9aaad40ad09a19503943c5cb2410ae4807d"
+    },
+    {
+      "file": "docs/seed-state.json",
+      "sha256": "5f7291f44c42a89a0de67f683994183261883c40fab49726300814abb31ec8ea"
+    },
+    {
+      "file": "tests/acceptance.test.mjs",
+      "sha256": "d7b3d8ac7c25eb1e23c239e7b5153bde7832fe84d854d646bdaf80eeed339396"
+    }
+  ],
+  "budgetLimitUsd": 3,
+  "selection": "First run, no selection for a favorable outcome"
+}

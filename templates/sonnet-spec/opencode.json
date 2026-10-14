@@ -1,0 +1,120 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openrouter/anthropic/claude-sonnet-5.5",
+  "small_model": "openrouter/anthropic/claude-sonnet-5.5",
+  "default_agent": "analyst",
+  "share": "disabled",
+  "enabled_providers": [
+    "openrouter"
+  ],
+  "provider": {
+    "openrouter": {
+      "whitelist": [
+        "anthropic/claude-sonnet-5.5"
+      ]
+    }
+  },
+  "permission": {
+    "external_directory": "deny",
+    "task": "deny",
+    "webfetch": "deny",
+    "websearch": "deny"
+  },
+  "agent": {
+    "analyst": {
+      "mode": "primary",
+      "model": "openrouter/anthropic/claude-sonnet-5.5",
+      "steps": 25,
+      "prompt": "Работай только в этой рабочей папке. Пиши по-русски. Это настоящий прогон: фиксируй только выполненные действия и результаты. Не обращайся к другим проектам, сети, прошлым реализациям. Никаких запусков серверов/установок. Не вызывай других агентов. Артефакты передаются через файлы. Не меняй docs, tests/acceptance.test.mjs и dist/vendor. Не утверждай визуальную проверку без браузера. Для редактирования используй write/edit/apply_patch, не shell. Заверши после выполнения конкретного задания. Роль: analyst. Работай по OpenSpec в openspec/changes/build-tracker/.\nПиши кратко. Отчёт максимум 100 строк. Не создавай один файл большим вызовом: сначала каркас, затем небольшие правки. Код дели по модулям; каждый write/edit не более 150 строк. Итоговый ответ 5–10 предложений. Спецификация до 160 строк; другие OpenSpec-файлы до 60 строк каждый. Не расписывай повторно весь бриф.\nОбщий визуальный контракт уже подготовлен: docs/SPEC-UI-CONTRACT.md. Прочитай его до работы. Сохрани заданные структуру, палитру, размеры и состояния. Проверяй реализацию по этому плану. Не меняй контракт самостоятельно.",
+      "permission": {
+        "edit": {
+          "*": "deny",
+          "reports/**": "allow",
+          "openspec/**": "allow"
+        },
+        "bash": {
+          "*": "deny",
+          "node --test tests/*": "allow",
+          "node --check dist/*": "allow",
+          "npm run spec:validate": "allow"
+        },
+        "task": "deny",
+        "external_directory": "deny",
+        "webfetch": "deny",
+        "websearch": "deny"
+      }
+    },
+    "designer": {
+      "mode": "primary",
+      "model": "openrouter/anthropic/claude-sonnet-5.5",
+      "steps": 25,
+      "prompt": "Работай только в этой рабочей папке. Пиши по-русски. Это настоящий прогон: фиксируй только выполненные действия и результаты. Не обращайся к другим проектам, сети, прошлым реализациям. Никаких запусков серверов/установок. Не вызывай других агентов. Артефакты передаются через файлы. Не меняй docs, tests/acceptance.test.mjs и dist/vendor. Не утверждай визуальную проверку без браузера. Для редактирования используй write/edit/apply_patch, не shell. Заверши после выполнения конкретного задания. Роль: designer. Работай по OpenSpec в openspec/changes/build-tracker/.\nПиши кратко. Отчёт максимум 100 строк. Не создавай один файл большим вызовом: сначала каркас, затем небольшие правки. Код дели по модулям; каждый write/edit не более 150 строк. Итоговый ответ 5–10 предложений. Спецификация до 160 строк; другие OpenSpec-файлы до 60 строк каждый. Не расписывай повторно весь бриф.\nОбщий визуальный контракт уже подготовлен: docs/SPEC-UI-CONTRACT.md. Прочитай его до работы. Сохрани заданные структуру, палитру, размеры и состояния. Проверяй реализацию по этому плану. Не меняй контракт самостоятельно.",
+      "permission": {
+        "edit": {
+          "*": "deny",
+          "reports/**": "allow",
+          "openspec/changes/build-tracker/design.md": "allow"
+        },
+        "bash": {
+          "*": "deny",
+          "node --test tests/*": "allow",
+          "node --check dist/*": "allow",
+          "npm run spec:validate": "allow"
+        },
+        "task": "deny",
+        "external_directory": "deny",
+        "webfetch": "deny",
+        "websearch": "deny"
+      }
+    },
+    "developer": {
+      "mode": "primary",
+      "model": "openrouter/anthropic/claude-sonnet-5.5",
+      "steps": 55,
+      "prompt": "Работай только в этой рабочей папке. Пиши по-русски. Это настоящий прогон: фиксируй только выполненные действия и результаты. Не обращайся к другим проектам, сети, прошлым реализациям. Никаких запусков серверов/установок. Не вызывай других агентов. Артефакты передаются через файлы. Не меняй docs, tests/acceptance.test.mjs и dist/vendor. Не утверждай визуальную проверку без браузера. Для редактирования используй write/edit/apply_patch, не shell. Заверши после выполнения конкретного задания. Роль: developer. Работай по OpenSpec в openspec/changes/build-tracker/.\nПиши кратко. Отчёт максимум 100 строк. Не создавай один файл большим вызовом: сначала каркас, затем небольшие правки. Код дели по модулям; каждый write/edit не более 150 строк. Итоговый ответ 5–10 предложений. Спецификация до 160 строк; другие OpenSpec-файлы до 60 строк каждый. Не расписывай повторно весь бриф.\nОбщий визуальный контракт уже подготовлен: docs/SPEC-UI-CONTRACT.md. Прочитай его до работы. Сохрани заданные структуру, палитру, размеры и состояния. Проверяй реализацию по этому плану. Не меняй контракт самостоятельно.",
+      "permission": {
+        "edit": {
+          "*": "deny",
+          "dist/**": "allow",
+          "dist/vendor/**": "deny",
+          "scratch/**": "allow",
+          "reports/**": "allow",
+          "openspec/changes/build-tracker/tasks.md": "allow"
+        },
+        "bash": {
+          "*": "deny",
+          "node --test tests/*": "allow",
+          "node --check dist/*": "allow",
+          "npm run spec:validate": "allow"
+        },
+        "task": "deny",
+        "external_directory": "deny",
+        "webfetch": "deny",
+        "websearch": "deny"
+      }
+    },
+    "tester": {
+      "mode": "primary",
+      "model": "openrouter/anthropic/claude-sonnet-5.5",
+      "steps": 25,
+      "prompt": "Работай только в этой рабочей папке. Пиши по-русски. Это настоящий прогон: фиксируй только выполненные действия и результаты. Не обращайся к другим проектам, сети, прошлым реализациям. Никаких запусков серверов/установок. Не вызывай других агентов. Артефакты передаются через файлы. Не меняй docs, tests/acceptance.test.mjs и dist/vendor. Не утверждай визуальную проверку без браузера. Для редактирования используй write/edit/apply_patch, не shell. Заверши после выполнения конкретного задания. Роль: tester. Работай по OpenSpec в openspec/changes/build-tracker/.\nПиши кратко. Отчёт максимум 100 строк. Не создавай один файл большим вызовом: сначала каркас, затем небольшие правки. Код дели по модулям; каждый write/edit не более 150 строк. Итоговый ответ 5–10 предложений. Спецификация до 160 строк; другие OpenSpec-файлы до 60 строк каждый. Не расписывай повторно весь бриф.\nОбщий визуальный контракт уже подготовлен: docs/SPEC-UI-CONTRACT.md. Прочитай его до работы. Сохрани заданные структуру, палитру, размеры и состояния. Проверяй реализацию по этому плану. Не меняй контракт самостоятельно.",
+      "permission": {
+        "edit": {
+          "*": "deny",
+          "reports/**": "allow",
+          "tests/agent-*.test.mjs": "allow"
+        },
+        "bash": {
+          "*": "deny",
+          "node --test tests/*": "allow",
+          "node --check dist/*": "allow",
+          "npm run spec:validate": "allow"
+        },
+        "task": "deny",
+        "external_directory": "deny",
+        "webfetch": "deny",
+        "websearch": "deny"
+      }
+    }
+  }
+}

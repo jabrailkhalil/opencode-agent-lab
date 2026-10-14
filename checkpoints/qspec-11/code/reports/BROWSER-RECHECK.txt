@@ -1,0 +1,13 @@
+ПРОВЕРКА ОПЕРАТОРОМ ПОСЛЕ ОТВЕТА МОДЕЛИ
+
+Браузер: пустой ввод сохраняет 24 ч и показывает ошибку; активная кнопка читаема; поиск не меняет проценты; нет горизонтального скролла на 390/768/1100/1280; форма отклоняет пробелы. Полный UI-набор не выполнялся.
+
+empty-capacity: PASS · 24 retained, total 104, overload 8; «Нужно число 0–168 с шагом 0,5. Прежнее значение сохранено.»
+active-view-contrast: PASS · rgb(255,255,255) text on rgb(32,107,196) background
+seed-formulas: PASS · Anna 32/24,133%,+8; Maria43%; Ilya25%
+search-independent: PASS · No matching tasks; team totals104/70 and Maria43%,Ilya25% unchanged
+no-document-overflow: PASS · [390,768,1100,1280]
+trim-validation: PASS · Spaces-only title rejected with visible error; cancel closes form
+
+Не проверено: Full keyboard and focus cycle; Native drag-and-drop; Corrupt localStorage browser reload; Complete accessibility audit.
+Код dist совпадает с проверенной версией qspec-09. Полный визуальный PASS не заявляется.

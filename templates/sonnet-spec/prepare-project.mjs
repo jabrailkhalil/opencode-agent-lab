@@ -1,0 +1,1 @@
+import fs from 'node:fs';import {bindRolePaths} from './role-path-permissions.mjs';const p=new URL('./opencode.json',import.meta.url),config=JSON.parse(fs.readFileSync(p,'utf8'));bindRolePaths(config,import.meta.dirname);fs.writeFileSync(p,JSON.stringify(config,null,2));console.log('Права четырёх ролей привязаны к этой папке. API не вызывался.');

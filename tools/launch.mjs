@@ -1,0 +1,50 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import net from 'node:net';
+import {spawn,spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),open=process.argv.includes('--open');
+const ports=[4096,4097,4191,4192,4201,4216,4217];
+const alive=port=>new Promise(resolve=>{const s=net.connect(port,'127.0.0.1');s.once('connect',()=>{s.destroy();resolve(true)});s.once('error',()=>resolve(false));setTimeout(()=>{s.destroy();resolve(false)},500)});
+if((await Promise.all(ports.map(alive))).some(Boolean))throw new Error('One of ports '+ports.join(', ')+' is busy. Close the previous lab first.');
+const reset=spawnSync(process.execPath,[path.join(root,'tools/reset.mjs')],{cwd:root,stdio:'inherit'});
+if(reset.status!==0)throw new Error('Could not prepare clean workspaces.');
+const setup=JSON.parse(fs.readFileSync(path.join(root,'data/live-preparation.json'),'utf8'));
+const logs=path.join(root,'.runtime','logs');fs.mkdirSync(logs,{recursive:true});
+const jobs=[['console',process.execPath,[path.join(root,'tools/checkpoint-console.mjs')]]];
+for(const p of setup.profiles){
+ jobs.push([p.profile+'-app',process.execPath,[path.join(root,'tools/static-server.mjs'),path.join(p.workspace,'dist'),String(p.appPort)]]);
+ jobs.push([p.profile+'-opencode',setup.executable,['serve','--hostname','127.0.0.1','--port',String(p.agentPort)]]);
+}
+const services=[];
+const serviceState=path.join(root,'.runtime/services.json');
+const persist=()=>fs.writeFileSync(serviceState,JSON.stringify({startedAt:new Date().toISOString(),root,services},null,2)+'\n');
+const env={...process.env,PATH:path.dirname(process.execPath)+path.delimiter+(process.env.PATH||''),XDG_DATA_HOME:path.join(root,'.runtime/opencode-data'),XDG_CONFIG_HOME:path.join(root,'.runtime/opencode-config'),XDG_CACHE_HOME:path.join(root,'.runtime/opencode-cache')};
+function start(name,bin,args){
+ const out=fs.openSync(path.join(logs,name+'.log'),'a');
+ const child=spawn(bin,args,{cwd:name.includes('opencode')?setup.profiles.find(p=>name.startsWith(p.profile)).workspace:root,env,detached:true,windowsHide:true,stdio:['ignore',out,out]});services.push({name,pid:child.pid,executable:bin,startedAt:Date.now()});child.unref();fs.closeSync(out);persist();
+}
+for(const job of jobs){
+ start(...job);
+ if(job[0].endsWith('-opencode')){
+  const p=setup.profiles.find(p=>job[0].startsWith(p.profile)),limit=Date.now()+45000;
+  while(Date.now()<limit&&!await alive(p.agentPort))await new Promise(r=>setTimeout(r,250));
+  if(!await alive(p.agentPort))throw new Error(job[0]+' did not start. See .runtime/logs.');
+ }
+}
+const basePorts=[4096,4097,4191,4192,4201],baseDeadline=Date.now()+45000;
+while(Date.now()<baseDeadline){if((await Promise.all(basePorts.map(alive))).every(Boolean))break;await new Promise(r=>setTimeout(r,300));}
+if(!(await Promise.all(basePorts.map(alive))).every(Boolean))throw new Error('Base services did not start. See .runtime/logs.');
+start('assist',process.execPath,[path.join(root,'tools/opencode-demo-assist.mjs')]);
+persist();
+const deadline=Date.now()+15000;
+while(Date.now()<deadline){if((await Promise.all(ports.map(alive))).every(Boolean))break;await new Promise(r=>setTimeout(r,300));}
+if(!(await Promise.all(ports.map(alive))).every(Boolean))throw new Error('Services did not start. See .runtime/logs.');
+const urls=['http://127.0.0.1:4201/welcome','http://127.0.0.1:4201/?profile=claude#intro','http://127.0.0.1:4201/?profile=qwen#intro','http://127.0.0.1:4201/parallel'];
+if(open){
+ if(process.platform==='win32')spawn('powershell.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',path.join(root,'tools/open-demo-tabs.ps1'),'-Urls',urls.join(',')],{windowsHide:true,detached:true,stdio:'ignore'}).unref();
+ else for(const url of urls)spawn(process.platform==='darwin'?'open':'xdg-open',[url],{detached:true,stdio:'ignore'}).unref();
+}
+console.log(urls.join('\n'));
+
+

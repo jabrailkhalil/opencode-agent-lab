@@ -1,0 +1,770 @@
+{
+  "kind": "recorded-role-insights",
+  "updatedAt": "2026-10-06T18:40:41.332Z",
+  "rateDefinition": "Выходные токены / длительность этапа или полного цикла. Время включает инструменты, проверки и ожидание API; это не чистая скорость генерации.",
+  "roleCases": [
+    {
+      "role": "analyst",
+      "name": "Аналитик",
+      "episode": "progress",
+      "problem": "Прогресс неоднозначно определён: 50% по карточкам вместо 43%/25% по часам.",
+      "finding": "Противоречие в определении прогресса и численных примерах.",
+      "repair": "Уточнить SPEC: выполненные назначенные часы / все назначенные часы недели; разработчик меняет расчёт.",
+      "check": "Мария 6/14 → 43%, Илья 4/16 → 25%; нулевой знаменатель → 0.",
+      "report": "ANALYSIS.md"
+    },
+    {
+      "role": "designer",
+      "name": "Дизайнер",
+      "episode": "ui",
+      "problem": "На 1280 px подписи действий перекрывают соседние кнопки.",
+      "finding": "Недостаточная ширина колонок панели после изменения общего макета.",
+      "repair": "Зафиксировать ширину и скрин; разработчик перестраивает CSS-сетку; дизайнер повторяет ревью.",
+      "check": "Подписи целиком на 390/768/1100/1280/1920 px; форма и перенос работают.",
+      "report": "DESIGN-REVIEW.md"
+    },
+    {
+      "role": "developer",
+      "name": "Разработчик",
+      "episode": "filter",
+      "problem": "«Скрыть готовые» даёт 0%/0% прогресса при правильных карточках.",
+      "finding": "Техническая причина: отфильтрованный набор передан в расчёт недельных метрик.",
+      "repair": "Воспроизвести до правки, назвать функцию и строку в текущем коде; отделить данные расчёта от данных отображения.",
+      "check": "9 → 7 → 9 карточек; прогресс 43%/25% и нагрузка Анны 32/24 не меняются.",
+      "report": "DEVELOPMENT.md"
+    },
+    {
+      "role": "tester",
+      "name": "Тестировщик",
+      "episode": "qa",
+      "problem": "Критерий требует назначить 70 активных часов при 16 доступных без перегрузки.",
+      "finding": "Невыполнимый критерий приёмки; это не доказанный дефект приложения.",
+      "repair": "Вернуть критерий аналитику. После уточнения проверить план без изменения исправного кода.",
+      "check": "16 ч назначены, 54 ч без ответственного; сохранены 9 задач и 80 ч всего.",
+      "report": "QA-RESULTS.md"
+    }
+  ],
+  "runs": {
+    "claude": {
+      "sourceSha256": "91afb178e74e43da67050e68ee59eebc11dd9d3a4a18b95e4f53c862efc394ff",
+      "total": {
+        "inputTokens": 6392108,
+        "outputTokens": 173956,
+        "cachedTokens": 5929112,
+        "requests": 183,
+        "requestsWithTokens": 183,
+        "missingUsage": 0,
+        "elapsedMs": 2078278,
+        "outputTokensPerSecond": 83.70198789574832,
+        "complete": true,
+        "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели."
+      },
+      "unassignedRequests": 0,
+      "roles": [
+        {
+          "inputTokens": 145529,
+          "outputTokens": 16405,
+          "cachedTokens": 98190,
+          "requests": 11,
+          "requestsWithTokens": 11,
+          "missingUsage": 0,
+          "elapsedMs": 149155,
+          "outputTokensPerSecond": 109.98625590828333,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "analyst",
+          "name": "Аналитик"
+        },
+        {
+          "inputTokens": 876278,
+          "outputTokens": 26785,
+          "cachedTokens": 766249,
+          "requests": 24,
+          "requestsWithTokens": 24,
+          "missingUsage": 0,
+          "elapsedMs": 246660,
+          "outputTokensPerSecond": 108.59077272358712,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "designer",
+          "name": "Ревью UI"
+        },
+        {
+          "inputTokens": 3285312,
+          "outputTokens": 99387,
+          "cachedTokens": 3079781,
+          "requests": 72,
+          "requestsWithTokens": 72,
+          "missingUsage": 0,
+          "elapsedMs": 924123,
+          "outputTokensPerSecond": 107.54737194074814,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "developer",
+          "name": "Разработчик"
+        },
+        {
+          "inputTokens": 2084989,
+          "outputTokens": 31379,
+          "cachedTokens": 1984892,
+          "requests": 76,
+          "requestsWithTokens": 76,
+          "missingUsage": 0,
+          "elapsedMs": 444974,
+          "outputTokensPerSecond": 70.51872693685473,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "tester",
+          "name": "Тестировщик"
+        }
+      ],
+      "stages": {
+        "claude-01": {
+          "checkpoint": "claude-01",
+          "role": "analyst",
+          "inputTokens": 70548,
+          "outputTokens": 11833,
+          "cachedTokens": 46567,
+          "requests": 6,
+          "requestsWithTokens": 6,
+          "missingUsage": 0,
+          "elapsedMs": 106680,
+          "outputTokensPerSecond": 110.92050993625796,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Правила и границы планирования",
+            "fact": "Простой жадный проход даёт 14 назначенных часов вместо достижимых 16; задача без ответственного должна входить в общий объём.",
+            "action": "Аналитик записал критерии, примеры и неоднозначности для разработчика.",
+            "verification": "ANALYSIS.md; последующая приёмка логики 9/9."
+          }
+        },
+        "claude-02": {
+          "checkpoint": "claude-02",
+          "role": "designer",
+          "inputTokens": 127626,
+          "outputTokens": 8396,
+          "cachedTokens": 102388,
+          "requests": 7,
+          "requestsWithTokens": 7,
+          "missingUsage": 0,
+          "elapsedMs": 80388,
+          "outputTokensPerSecond": 104.44344927103548,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "PLAN",
+            "title": "План UI",
+            "fact": "Готового интерфейса ещё нет; определены сетка, формы, адаптация и минимум 40 px для мобильных кнопок.",
+            "action": "Дизайнер сохранил DESIGN-PLAN.",
+            "verification": "Ревью реализации выполняется позже."
+          }
+        },
+        "claude-03": {
+          "checkpoint": "claude-03",
+          "role": "developer",
+          "inputTokens": 453109,
+          "outputTokens": 30857,
+          "cachedTokens": 384130,
+          "requests": 10,
+          "requestsWithTokens": 10,
+          "missingUsage": 0,
+          "elapsedMs": 262486,
+          "outputTokensPerSecond": 117.55674588358998,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "STOPPED",
+            "title": "Обрыв API",
+            "fact": "Первая реализация прервалась; сохранены частичные файлы.",
+            "action": "Продолжить с текущего кода в новой сессии.",
+            "verification": "Завершение — claude-04."
+          }
+        },
+        "claude-04": {
+          "checkpoint": "claude-04",
+          "role": "developer",
+          "inputTokens": 1724645,
+          "outputTokens": 35192,
+          "cachedTokens": 1679649,
+          "requests": 17,
+          "requestsWithTokens": 17,
+          "missingUsage": 0,
+          "elapsedMs": 295730,
+          "outputTokensPerSecond": 119.00043959016669,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Перетаскивание и favicon",
+            "fact": "Прокрутка к низко расположенной колонке мешала захвату карточки; favicon давал 404.",
+            "action": "Разработчик перенёс метрики в боковую колонку и добавил пустую favicon.",
+            "verification": "9/9 логика, 19/19 браузер; дополнительный EX-13 ещё впереди."
+          }
+        },
+        "claude-05": {
+          "checkpoint": "claude-05",
+          "role": "tester",
+          "inputTokens": 562627,
+          "outputTokens": 7258,
+          "cachedTokens": 526280,
+          "requests": 21,
+          "requestsWithTokens": 21,
+          "missingUsage": 0,
+          "elapsedMs": 107644,
+          "outputTokensPerSecond": 67.42595964475493,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Основной QA прошёл; дополнительная проверка нашла расхождение",
+            "fact": "QA проверяет текст и дал PASS. Внешний EX-13 читает у Анны 100% вместо 0%.",
+            "action": "Передать техническую причину разработчику.",
+            "verification": "Основной QA 9/9 + 19/19; EX-13 FAIL. Находка внешней проверки, не личного QA."
+          }
+        },
+        "claude-06": {
+          "checkpoint": "claude-06",
+          "role": "developer",
+          "inputTokens": 220561,
+          "outputTokens": 7628,
+          "cachedTokens": 198167,
+          "requests": 11,
+          "requestsWithTokens": 11,
+          "missingUsage": 0,
+          "elapsedMs": 83133,
+          "outputTokensPerSecond": 91.75658282511158,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Нагрузка прочитана как прогресс",
+            "fact": "Первая полоса — нагрузка; у полос не было семантического значения прогресса.",
+            "action": "Разработчик отделил декоративную нагрузку, добавил role и aria для выполненных часов.",
+            "verification": "Основной QA PASS; исходный EX-13 требует независимого повтора."
+          }
+        },
+        "claude-07": {
+          "checkpoint": "claude-07",
+          "role": "tester",
+          "inputTokens": 391484,
+          "outputTokens": 7311,
+          "cachedTokens": 370010,
+          "requests": 15,
+          "requestsWithTokens": 15,
+          "missingUsage": 0,
+          "elapsedMs": 100796,
+          "outputTokensPerSecond": 72.53264018413428,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Повторный основной QA",
+            "fact": "9/9 и 19/19; дополнительный EX-13 всё ещё получает неправильную геометрию.",
+            "action": "Вернуть разработчику фактический вывод EX-13.",
+            "verification": "Дополнительный дефект не закрыт."
+          }
+        },
+        "claude-08": {
+          "checkpoint": "claude-08",
+          "role": "developer",
+          "inputTokens": 485113,
+          "outputTokens": 12465,
+          "cachedTokens": 452116,
+          "requests": 19,
+          "requestsWithTokens": 19,
+          "missingUsage": 0,
+          "elapsedMs": 136079,
+          "outputTokensPerSecond": 91.60120224281484,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Идентификатор и ширина полосы",
+            "fact": "Идентификатор находился на тексте; измерялась обёртка, а не полоса.",
+            "action": "Разработчик поменял разметку, идентификатор и ширину; убрал inline-ширину нагрузки.",
+            "verification": "Основной QA PASS; дополнительная проверка повторяется."
+          }
+        },
+        "claude-09": {
+          "checkpoint": "claude-09",
+          "role": "tester",
+          "inputTokens": 565874,
+          "outputTokens": 9847,
+          "cachedTokens": 541253,
+          "requests": 19,
+          "requestsWithTokens": 19,
+          "missingUsage": 0,
+          "elapsedMs": 123983,
+          "outputTokensPerSecond": 79.4221788471,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Дорожка вместо заливки",
+            "fact": "Основной QA проходит. EX-13 измеряет 100% ширины дорожки вместо доли выполненных часов.",
+            "action": "Передать ещё один возврат разработчику.",
+            "verification": "9/9 и 19/19; EX-13 пока FAIL."
+          }
+        },
+        "claude-10": {
+          "checkpoint": "claude-10",
+          "role": "developer",
+          "inputTokens": 401884,
+          "outputTokens": 13245,
+          "cachedTokens": 365719,
+          "requests": 15,
+          "requestsWithTokens": 15,
+          "missingUsage": 0,
+          "elapsedMs": 146695,
+          "outputTokensPerSecond": 90.28937591601623,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Семантика заливки",
+            "fact": "role=progressbar стоял на дорожке, которая всегда занимает 100%.",
+            "action": "Разработчик перенёс role и aria на заливку.",
+            "verification": "Основной QA PASS; подтверждение EX-13 фиксируется в итоговом checkpoint."
+          }
+        },
+        "claude-11": {
+          "checkpoint": "claude-11",
+          "role": "tester",
+          "inputTokens": 565004,
+          "outputTokens": 6963,
+          "cachedTokens": 547349,
+          "requests": 21,
+          "requestsWithTokens": 21,
+          "missingUsage": 0,
+          "elapsedMs": 112551,
+          "outputTokensPerSecond": 61.86528773622624,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "CHECKED",
+            "title": "Повторная приёмка",
+            "fact": "Сценарии создания, сохранения, отмены плана и основные тесты проходят.",
+            "action": "Тестировщик сохранил вывод и скрины.",
+            "verification": "9/9 логика и 19/19 браузер."
+          }
+        },
+        "claude-12": {
+          "checkpoint": "claude-12",
+          "role": "designer",
+          "inputTokens": 748652,
+          "outputTokens": 18389,
+          "cachedTokens": 663861,
+          "requests": 17,
+          "requestsWithTokens": 17,
+          "missingUsage": 0,
+          "elapsedMs": 166272,
+          "outputTokensPerSecond": 110.5958910700539,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "OPEN",
+            "title": "Отклонения от дизайн-плана",
+            "fact": "Кнопки 36 px вместо 40; другой цвет фокуса; порядок Tab отличается от визуального; нативное подтверждение.",
+            "action": "Дизайнер записал измерения и замечания; в этом прогоне их не исправляли.",
+            "verification": "Ревью PASS с неблокирующими замечаниями."
+          }
+        },
+        "claude-13": {
+          "checkpoint": "claude-13",
+          "role": "analyst",
+          "inputTokens": 74981,
+          "outputTokens": 4572,
+          "cachedTokens": 51623,
+          "requests": 5,
+          "requestsWithTokens": 5,
+          "missingUsage": 0,
+          "elapsedMs": 42475,
+          "outputTokensPerSecond": 107.63978811065333,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Пробел в доказательствах",
+            "fact": "В доступных аналитику отчётах нет повторного EX-13 после третьей правки.",
+            "action": "Аналитик явно отметил отсутствие подтверждения.",
+            "verification": "Пробел закрыт независимой итоговой проверкой claude-14."
+          }
+        }
+      },
+      "followups": {
+        "claude-14": {
+          "finding": {
+            "state": "CHECKED",
+            "title": "Итоговая независимая проверка",
+            "fact": "Все сохранённые итоговые наборы проходят.",
+            "action": "Сохранены код и подтверждение целостности.",
+            "verification": "9/9 логика, 19/19 браузер, 13/13 дополнительные."
+          }
+        }
+      }
+    },
+    "qwen": {
+      "sourceSha256": "9a08f52091b614e65bf10feeb7e4df7286dcf2962c2168121f068f47ed4e362b",
+      "total": {
+        "inputTokens": 26928080,
+        "outputTokens": 238022,
+        "cachedTokens": 17595669,
+        "requests": 545,
+        "requestsWithTokens": 544,
+        "missingUsage": 1,
+        "elapsedMs": 3934903,
+        "outputTokensPerSecond": 60.48992821424061,
+        "complete": false,
+        "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели."
+      },
+      "unassignedRequests": 0,
+      "roles": [
+        {
+          "inputTokens": 88251,
+          "outputTokens": 3605,
+          "cachedTokens": 43177,
+          "requests": 14,
+          "requestsWithTokens": 14,
+          "missingUsage": 0,
+          "elapsedMs": 65341,
+          "outputTokensPerSecond": 55.17209715186484,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "analyst",
+          "name": "Аналитик"
+        },
+        {
+          "inputTokens": 71734,
+          "outputTokens": 1615,
+          "cachedTokens": 57008,
+          "requests": 6,
+          "requestsWithTokens": 6,
+          "missingUsage": 0,
+          "elapsedMs": 24782,
+          "outputTokensPerSecond": 65.16826729077556,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "designer",
+          "name": "Ревью UI"
+        },
+        {
+          "inputTokens": 23738622,
+          "outputTokens": 217092,
+          "cachedTokens": 15428693,
+          "requests": 398,
+          "requestsWithTokens": 397,
+          "missingUsage": 1,
+          "elapsedMs": 3175723,
+          "outputTokensPerSecond": 68.35986639892711,
+          "complete": false,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "developer",
+          "name": "Разработчик"
+        },
+        {
+          "inputTokens": 3029473,
+          "outputTokens": 15710,
+          "cachedTokens": 2066791,
+          "requests": 127,
+          "requestsWithTokens": 127,
+          "missingUsage": 0,
+          "elapsedMs": 578984,
+          "outputTokensPerSecond": 27.133737719867906,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "role": "tester",
+          "name": "Тестировщик"
+        }
+      ],
+      "stages": {
+        "qwen-01": {
+          "checkpoint": "qwen-01",
+          "role": "analyst",
+          "inputTokens": 49984,
+          "outputTokens": 2099,
+          "cachedTokens": 39878,
+          "requests": 8,
+          "requestsWithTokens": 8,
+          "missingUsage": 0,
+          "elapsedMs": 30832,
+          "outputTokensPerSecond": 68.0786196159834,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "CLARIFICATION",
+            "title": "Неоднозначности требований",
+            "fact": "Аналитик перечислил вопросы к распределению, датам, фильтрам и сохранению.",
+            "action": "Сохранил ANALYSIS с требованиями и вопросами.",
+            "verification": "Это анализ постановки, не проверка готового приложения."
+          }
+        },
+        "qwen-02": {
+          "checkpoint": "qwen-02",
+          "role": "designer",
+          "inputTokens": 71734,
+          "outputTokens": 1615,
+          "cachedTokens": 57008,
+          "requests": 6,
+          "requestsWithTokens": 6,
+          "missingUsage": 0,
+          "elapsedMs": 24782,
+          "outputTokensPerSecond": 65.16826729077556,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "PLAN",
+            "title": "План интерфейса",
+            "fact": "Дизайнер подготовил требования. Отдельного подтверждённого дефекта готового UI на этом этапе нет.",
+            "action": "Сохранил DESIGN-PLAN.",
+            "verification": "Новое UI-ревью предусмотрено в живом маршруте."
+          }
+        },
+        "qwen-03": {
+          "checkpoint": "qwen-03",
+          "role": "developer",
+          "inputTokens": 4442817,
+          "outputTokens": 77965,
+          "cachedTokens": 4312281,
+          "requests": 90,
+          "requestsWithTokens": 90,
+          "missingUsage": 0,
+          "elapsedMs": 722008,
+          "outputTokensPerSecond": 107.98356804910749,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "OPEN",
+            "title": "Первая реализация",
+            "fact": "Сохранённая браузерная проверка 6/19.",
+            "action": "Разработчик передал код на независимый QA.",
+            "verification": "Форма, действия и планирование требуют проверки."
+          }
+        },
+        "qwen-04": {
+          "checkpoint": "qwen-04",
+          "role": "tester",
+          "inputTokens": 737999,
+          "outputTokens": 2313,
+          "cachedTokens": 653717,
+          "requests": 23,
+          "requestsWithTokens": 23,
+          "missingUsage": 0,
+          "elapsedMs": 92999,
+          "outputTokensPerSecond": 24.871235174571773,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Форма и действия не проходят",
+            "fact": "Тестировщик получил 6/19: не работают сценарии формы, сохранения, распределения и переноса.",
+            "action": "Сохранил QA-RESULTS и передал разработчику.",
+            "verification": "FAIL."
+          }
+        },
+        "qwen-05": {
+          "checkpoint": "qwen-05",
+          "role": "developer",
+          "inputTokens": 5211938,
+          "outputTokens": 48484,
+          "cachedTokens": 5059888,
+          "requests": 76,
+          "requestsWithTokens": 75,
+          "missingUsage": 1,
+          "elapsedMs": 722715,
+          "outputTokensPerSecond": 67.08591906906595,
+          "complete": false,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "STOPPED",
+            "title": "Незавершённая первая правка",
+            "fact": "Разработчик начал менять код; этап прерван.",
+            "action": "Сохранены частичные изменения.",
+            "verification": "Следующий QA: 8/19."
+          }
+        },
+        "qwen-06": {
+          "checkpoint": "qwen-06",
+          "role": "tester",
+          "inputTokens": 528677,
+          "outputTokens": 2513,
+          "cachedTokens": 113259,
+          "requests": 22,
+          "requestsWithTokens": 22,
+          "missingUsage": 0,
+          "elapsedMs": 151006,
+          "outputTokensPerSecond": 16.64172284544985,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Ошибки формы, список сотрудников, нулевая доступность",
+            "fact": "8/19; ошибки не видны, ответственных нельзя выбрать, задания не снимаются при нулевой доступности.",
+            "action": "Тестировщик передал точные сценарии разработчику.",
+            "verification": "FAIL."
+          }
+        },
+        "qwen-07": {
+          "checkpoint": "qwen-07",
+          "role": "developer",
+          "inputTokens": 3428789,
+          "outputTokens": 20409,
+          "cachedTokens": 1679856,
+          "requests": 56,
+          "requestsWithTokens": 56,
+          "missingUsage": 0,
+          "elapsedMs": 521605,
+          "outputTokensPerSecond": 39.12730897901669,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Три технические причины",
+            "fact": "Элемент ошибки искали по отсутствующему id; список сотрудников не заполнен; алгоритм неправильно обрабатывал нулевую доступность.",
+            "action": "Исправлены селектор ошибки, заполнение списка и распределение.",
+            "verification": "9/9 логика, 18/19 браузер; перенос ещё не принят."
+          }
+        },
+        "qwen-08": {
+          "checkpoint": "qwen-08",
+          "role": "tester",
+          "inputTokens": 447599,
+          "outputTokens": 4068,
+          "cachedTokens": 429837,
+          "requests": 23,
+          "requestsWithTokens": 23,
+          "missingUsage": 0,
+          "elapsedMs": 92211,
+          "outputTokensPerSecond": 44.11621173178905,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Спорный перенос карточки",
+            "fact": "QA-08b не прошёл; остальные 18 проходят. Причина в реализации пока лишь гипотеза.",
+            "action": "Тестировщик вернул воспроизводимый FAIL.",
+            "verification": "18/19."
+          }
+        },
+        "qwen-09": {
+          "checkpoint": "qwen-09",
+          "role": "developer",
+          "inputTokens": 5530796,
+          "outputTokens": 39338,
+          "cachedTokens": 2464125,
+          "requests": 90,
+          "requestsWithTokens": 90,
+          "missingUsage": 0,
+          "elapsedMs": 614164,
+          "outputTokensPerSecond": 64.05129574511042,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "OPEN",
+            "title": "Обработчики переноса и повреждённые данные",
+            "fact": "Разработчик усилил isValidState и переделывал события drag/drop; достиг лимита шагов.",
+            "action": "Сохранён код; работа требует повторной проверки.",
+            "verification": "18/19; перенос не принят."
+          }
+        },
+        "qwen-10": {
+          "checkpoint": "qwen-10",
+          "role": "tester",
+          "inputTokens": 856572,
+          "outputTokens": 3679,
+          "cachedTokens": 736709,
+          "requests": 34,
+          "requestsWithTokens": 34,
+          "missingUsage": 0,
+          "elapsedMs": 116817,
+          "outputTokensPerSecond": 31.493703827353897,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Повторный FAIL переноса",
+            "fact": "В том же сценарии карточка не найдена в целевой колонке.",
+            "action": "Тестировщик вернул QA-08b.",
+            "verification": "18/19."
+          }
+        },
+        "qwen-11": {
+          "checkpoint": "qwen-11",
+          "role": "developer",
+          "inputTokens": 5124282,
+          "outputTokens": 30896,
+          "cachedTokens": 1912543,
+          "requests": 86,
+          "requestsWithTokens": 86,
+          "missingUsage": 0,
+          "elapsedMs": 595231,
+          "outputTokensPerSecond": 51.90589871831272,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "OPEN",
+            "title": "Полосы прогресса и перенос",
+            "fact": "Добавлены полосы выполненных часов; доработаны события. Версия о проблеме автоматизации остаётся гипотезой.",
+            "action": "Разработчик обновил app.js и styles.css.",
+            "verification": "9/9 логика; 18/19 браузер."
+          }
+        },
+        "qwen-12": {
+          "checkpoint": "qwen-12",
+          "role": "tester",
+          "inputTokens": 458626,
+          "outputTokens": 3137,
+          "cachedTokens": 133269,
+          "requests": 25,
+          "requestsWithTokens": 25,
+          "missingUsage": 0,
+          "elapsedMs": 125951,
+          "outputTokensPerSecond": 24.9065112623163,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "FOUND",
+            "title": "Перенос не принят",
+            "fact": "Тестировщик повторно получил FAIL QA-08b.",
+            "action": "Оставил общий FAIL в QA-RESULTS.",
+            "verification": "18/19."
+          }
+        },
+        "qwen-13": {
+          "checkpoint": "qwen-13",
+          "role": "analyst",
+          "inputTokens": 38267,
+          "outputTokens": 1506,
+          "cachedTokens": 3299,
+          "requests": 6,
+          "requestsWithTokens": 6,
+          "missingUsage": 0,
+          "elapsedMs": 34509,
+          "outputTokensPerSecond": 43.64078935929757,
+          "complete": true,
+          "rateDefinition": "Выходные токены / время всего этапа; включая ожидание API, инструменты и проверки. Это не чистая скорость генерации модели.",
+          "finding": {
+            "state": "OPEN",
+            "title": "Приёмка пока не закрыта",
+            "fact": "Аналитик указал на непройденный обязательный сценарий.",
+            "action": "Вернул на разбор переноса.",
+            "verification": "Исходный результат 18/19."
+          }
+        }
+      },
+      "followups": {
+        "qwen-15": {
+          "finding": {
+            "state": "CHECKED",
+            "title": "Уточнение жеста проверки",
+            "fact": "Точный захват TASK-101 и повтор на том же коде дали PASS.",
+            "action": "Исправлен способ проверки человеком; код приложения не меняли.",
+            "verification": "Повторная приёмка 19/19; вмешательство учитывается отдельно."
+          }
+        }
+      }
+    }
+  },
+  "newPaidApiCalls": 0
+}

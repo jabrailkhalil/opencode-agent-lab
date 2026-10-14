@@ -1,0 +1,61 @@
+✔ 32 часа при доступных 24 показывают 133% и 8 часов перегрузки (0.9134ms)
+✔ выполненная задача освобождает нагрузку, оставаясь в прогрессе (0.1069ms)
+✖ недоступный сотрудник не получает задачи, а лишние задачи сохраняются (1.0775ms)
+✖ распределение устраняет перегрузку и сохраняет суммы часов (0.2104ms)
+✔ задачи другой недели не влияют на текущую загрузку и распределение (0.1526ms)
+✔ нулевая доступность обрабатывается без Infinity и NaN (0.0974ms)
+✔ валидация отклоняет пустое название и отрицательные или дробные оценки вне шага (0.7324ms)
+✔ сохранённое состояние проходит проверку; испорченные данные отклоняются (0.1781ms)
+✔ дата приводится к понедельнику без зависимости от часового пояса (0.0715ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 7
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.6761
+
+✖ failing tests:
+
+test at tests\acceptance.test.mjs:17:1
+✖ недоступный сотрудник не получает задачи, а лишние задачи сохраняются (1.0775ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  32 !== 0
+  
+      at TestContext.<anonymous> (file:////demo/rehearsal-runs/qwen-full-2026-10-03-04/workspace/tests/acceptance.test.mjs:25:43)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 32,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\acceptance.test.mjs:28:1
+✖ распределение устраняет перегрузку и сохраняет суммы часов (0.2104ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8 !== 0
+  
+      at TestContext.<anonymous> (file:////demo/rehearsal-runs/qwen-full-2026-10-03-04/workspace/tests/acceptance.test.mjs:30:43)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

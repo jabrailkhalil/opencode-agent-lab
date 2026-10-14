@@ -1,0 +1,4 @@
+Повторная браузерная проверка direct-12: FAIL.
+1280x900, кнопка current-week. span.week-label x=193.6667, y=96.6667, right=318.7083, bottom=116.6667. span.week-iso x=318.7083, y=97.6667, right=385.1771, bottom=117.6667.
+Хотя оба span display:block и innerText содержит перенос строки, вычисленный flex-direction самой кнопки = row, gap = normal. Они по-прежнему стоят рядом без интервала. Скриншот application-1280.png подтверждает слитное «20262026-09-28».
+Ожидание: либо две отдельные строки (y ISO >= bottom подписи + интервал), либо одна видимая дата с ISO в aria-label. Одного display:block детям flex-контейнера недостаточно. Учесть стили Tabler .btn.

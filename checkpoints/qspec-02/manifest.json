@@ -1,0 +1,98 @@
+{
+  "model": "qwen/qwen3.8-flash",
+  "publicExport": true,
+  "note": "Personal machine paths were removed; hashes describe this public export.",
+  "files": [
+    {
+      "path": "dist/vendor/tabler/LICENSE",
+      "bytes": 1090,
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5"
+    },
+    {
+      "path": "dist/vendor/tabler/source.json",
+      "bytes": 373,
+      "sha256": "abc7455380f4ac2db11ac39c17de9303e7e3875c21a5669e448f4a31a64dded5"
+    },
+    {
+      "path": "dist/vendor/tabler/tabler.min.css",
+      "bytes": 635394,
+      "sha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403"
+    },
+    {
+      "path": "docs/BRIEF.md",
+      "bytes": 4927,
+      "sha256": "fd83c9f574452bccec30cea50a4039caad96f92ed519ce7f4a32b5dfa3cf80b2"
+    },
+    {
+      "path": "docs/DESIGN-REFERENCE.md",
+      "bytes": 1464,
+      "sha256": "fbf4039dd4169ca7e03063d5b3fcc9aaad40ad09a19503943c5cb2410ae4807d"
+    },
+    {
+      "path": "docs/INTERFACES.md",
+      "bytes": 3753,
+      "sha256": "5219cbb4a6a123b43959febdf7fc9cb1a6e7d057fff554df5c4572eedb6e6fed"
+    },
+    {
+      "path": "docs/OPENSPEC-WORKFLOW.md",
+      "bytes": 592,
+      "sha256": "5288d7911c9502e5827907b9e4f4cad0d2cd000b1144e8906232d86f833d90d9"
+    },
+    {
+      "path": "docs/seed-state.json",
+      "bytes": 3702,
+      "sha256": "5f7291f44c42a89a0de67f683994183261883c40fab49726300814abb31ec8ea"
+    },
+    {
+      "path": "openspec/changes/archive/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "openspec/changes/build-tracker/.openspec.yaml",
+      "bytes": 40,
+      "sha256": "3ae9e70fc0101b2a700cedadfa7b02caa5799fdfd1db033999469c527448c6b2"
+    },
+    {
+      "path": "openspec/changes/build-tracker/design.md",
+      "bytes": 3572,
+      "sha256": "57ed2950e2edf20cd4f6f4fe0f7c2957b446d24c4f35612f2638ca554782fd34"
+    },
+    {
+      "path": "openspec/changes/build-tracker/proposal.md",
+      "bytes": 2854,
+      "sha256": "8e3dc51382455c53759d902acefe0498989afb6d9cbfcb402d2bdb9ebfdd7952"
+    },
+    {
+      "path": "openspec/changes/build-tracker/specs/tracker/spec.md",
+      "bytes": 10326,
+      "sha256": "5b4a238ae3e5994d1f056ad835eb22e0d01008d6408d51e2ed69bb545ae4f192"
+    },
+    {
+      "path": "openspec/changes/build-tracker/tasks.md",
+      "bytes": 2647,
+      "sha256": "8fac42b7cfd9f5aa9af0df9bc0055eaac8826df45e0238fadba191f0d71d52b5"
+    },
+    {
+      "path": "openspec/config.yaml",
+      "bytes": 768,
+      "sha256": "2dc0b9247a85b2dcdd5d83cb8a35a0088fd3edc6c20d3148523a2d1e36e69e49"
+    },
+    {
+      "path": "openspec/specs/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/ANALYSIS.md",
+      "bytes": 4927,
+      "sha256": "a084215988f105389386627a4f58f41dd53a50467ca514822a611c2f99359f17"
+    },
+    {
+      "path": "tests/acceptance.test.mjs",
+      "bytes": 4284,
+      "sha256": "d7b3d8ac7c25eb1e23c239e7b5153bde7832fe84d854d646bdaf80eeed339396"
+    }
+  ],
+  "screenshots": []
+}

@@ -1,0 +1,69 @@
+{
+  "capturedAt": "2026-10-13T19:33:08.537Z",
+  "checkedBy": "operator",
+  "basis": "Browser interaction with locally served qspec-09 implementation; final code hashes must match.",
+  "codeHashes": {
+    "app.js": "2503bfbe9754da0da7f7ea674f132aa7b2f38ef6c094fee001f03f45437f64e4",
+    "styles.css": "c26bbd2e9ca3963bf393c960feb484f2c7cb8646ec1ae74b12a14376a6cdc7a9",
+    "domain.js": "f10f3534be8b19331f44fe475c659606414e0bb3a64e6271c028abd5afce9ca3",
+    "index.html": "a50d5aec256860bb5a10013efafa0ee43aba2a22c614032023295f8428ff3168"
+  },
+  "summary": "Браузер: пустой ввод сохраняет 24 ч и показывает ошибку; активная кнопка читаема; поиск не меняет проценты; нет горизонтального скролла на 390/768/1100/1280; форма отклоняет пробелы. Полный UI-набор не выполнялся.",
+  "checks": [
+    {
+      "id": "empty-capacity",
+      "pass": true,
+      "expected": "24 retained, total 104, overload 8, inline error",
+      "observed": "24 retained, total 104, overload 8; «Нужно число 0–168 с шагом 0,5. Прежнее значение сохранено.»"
+    },
+    {
+      "id": "active-view-contrast",
+      "pass": true,
+      "observed": "rgb(255,255,255) text on rgb(32,107,196) background"
+    },
+    {
+      "id": "seed-formulas",
+      "pass": true,
+      "observed": "Anna 32/24,133%,+8; Maria43%; Ilya25%"
+    },
+    {
+      "id": "search-independent",
+      "pass": true,
+      "observed": "No matching tasks; team totals104/70 and Maria43%,Ilya25% unchanged"
+    },
+    {
+      "id": "no-document-overflow",
+      "pass": true,
+      "widths": [
+        390,
+        768,
+        1100,
+        1280
+      ],
+      "documentWidths": [
+        375,
+        753,
+        1085,
+        1265
+      ]
+    },
+    {
+      "id": "trim-validation",
+      "pass": true,
+      "observed": "Spaces-only title rejected with visible error; cancel closes form"
+    }
+  ],
+  "notRun": [
+    "Full keyboard and focus cycle",
+    "Native drag-and-drop",
+    "Corrupt localStorage browser reload",
+    "Complete accessibility audit"
+  ],
+  "screenshots": [
+    "artifacts/qwen-spec-20261013/application-employees-after.png",
+    "artifacts/qwen-spec-20261013/application-board-after.png",
+    "artifacts/qwen-spec-20261013/empty-capacity-before.png"
+  ],
+  "finalCheckpoint": "qspec-11",
+  "finalCodeMatchesCheckedVersion": true
+}

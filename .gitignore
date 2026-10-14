@@ -1,0 +1,10 @@
+node_modules/
+.runtime/
+artifacts/
+data/live-preparation.json
+data/checkpoint-console-state.json
+data/opencode-recording-events.jsonl
+.env
+.env.*
+!.env.example
+*.log

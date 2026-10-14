@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Поток — план команды</title>
+  <link rel="stylesheet" href="vendor/tabler/tabler.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app" class="app">
+  <header class="app-head">
+    <div class="head-title">
+      <h1 class="page-title">План команды</h1>
+      <div class="text-secondary">Поток · трекер задач и недельная загрузка</div>
+    </div>
+    <div class="head-actions">
+      <button type="button" class="btn btn-primary" data-testid="new-task" data-action="new-task">Новая задача</button>
+      <button type="button" class="btn" data-testid="propose-plan" data-action="propose">Предложить распределение</button>
+      <button type="button" class="btn btn-outline-secondary" data-testid="reset-demo" data-action="reset">Восстановить пример</button>
+    </div>
+  </header>
+
+  <div id="alerts" class="alerts" aria-live="polite"></div>
+
+  <nav class="week-bar" aria-label="Выбор недели">
+    <button type="button" class="btn btn-icon-text" data-testid="prev-week" data-action="prev" aria-label="Предыдущая неделя">‹ <span class="d-none d-sm-inline">Назад</span></button>
+    <button type="button" class="btn week-current" data-testid="current-week" data-action="today" title="Вернуться к начальной неделе"></button>
+    <button type="button" class="btn btn-icon-text" data-testid="next-week" data-action="next" aria-label="Следующая неделя"><span class="d-none d-sm-inline">Вперёд</span> ›</button>
+  </nav>
+
+  <section id="summary" class="summary" aria-live="polite" aria-label="Сводка недели"></section>
+
+  <section class="toolbar" aria-label="Поиск и виды">
+    <div class="tool-field">
+      <label class="form-label" for="search">Поиск по названию и описанию</label>
+      <input id="search" type="search" class="form-control" data-testid="search" placeholder="Например, заявки" autocomplete="off">
+    </div>
+    <div class="tool-field">
+      <label class="form-label" for="filter-assignee">Ответственный</label>
+      <select id="filter-assignee" class="form-select" data-testid="filter-assignee"></select>
+    </div>
+    <div class="tool-views">
+      <span class="form-label" id="views-label">Вид</span>
+      <div class="btn-group" role="group" aria-labelledby="views-label">
+        <button type="button" class="btn" data-testid="view-board" data-action="view-board" aria-pressed="true">Доска</button>
+        <button type="button" class="btn" data-testid="view-employees" data-action="view-employees" aria-pressed="false">По сотрудникам</button>
+      </div>
+    </div>
+    <div class="form-hint tool-note">Метрики считаются по всем задачам недели, поиск и фильтр их не меняют.</div>
+  </section>
+
+  <section id="plan-slot" aria-label="Предпросмотр распределения"></section>
+
+  <div class="workzone">
+    <aside class="team" aria-labelledby="team-title">
+      <h2 class="section-title" id="team-title">Команда</h2>
+      <div id="team" class="team-grid"></div>
+      <div id="unassigned-row" class="unassigned-row"></div>
+    </aside>
+    <main id="main" class="main-zone"></main>
+  </div>
+</div>
+<div id="modal-root"></div>
+<div id="confirm-root"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

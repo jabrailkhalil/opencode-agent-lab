@@ -1,0 +1,9 @@
+{
+  "summary": "Проверены восстановление недели, сохранение нагрузки при пустой доступности, колонки пустого поиска, фокус формы и 4 ширины. Пустое поле доступности остаётся без пояснения; полная UI-приёмка не выполнялась.",
+  "checkpoint": "flash-13",
+  "checkedVersion": "flash-10",
+  "widths": [390, 768, 1100, 1280],
+  "scope": "Targeted browser verification, not complete acceptance",
+  "protocol": "reports/BROWSER-RECHECK.txt",
+  "remaining": ["Empty capacity field has no visible validation hint", "Full CRUD, drag-and-drop and corrupted storage scenarios not run in the browser"]
+}

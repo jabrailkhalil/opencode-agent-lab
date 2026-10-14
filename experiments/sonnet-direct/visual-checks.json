@@ -1,0 +1,13 @@
+{
+  "summary": "Даты разделены со второй попытки; 4 ширины. Полный UI-набор не выполнялся.",
+  "checkpoint": "direct-15",
+  "checkedVersion": "direct-13",
+  "widths": [
+    390,
+    768,
+    1100,
+    1280
+  ],
+  "scope": "Targeted browser verification, not complete acceptance",
+  "protocol": "reports/BROWSER-RECHECK.txt"
+}

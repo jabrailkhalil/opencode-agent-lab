@@ -1,0 +1,13 @@
+{
+  "summary": "Боковая панель исправлена; 4 ширины, контрольные цифры. Полный UI-набор не выполнялся.",
+  "checkpoint": "sdd-19",
+  "checkedVersion": "sdd-17",
+  "widths": [
+    390,
+    768,
+    1100,
+    1280
+  ],
+  "scope": "Targeted browser verification, not complete acceptance",
+  "protocol": "reports/BROWSER-RECHECK.txt"
+}

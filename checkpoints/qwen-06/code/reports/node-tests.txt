@@ -1,0 +1,40 @@
+✔ 32 часа при доступных 24 показывают 133% и 8 часов перегрузки (1.5274ms)
+✔ выполненная задача освобождает нагрузку, оставаясь в прогрессе (0.115ms)
+✖ недоступный сотрудник не получает задачи, а лишние задачи сохраняются (1.2903ms)
+✔ распределение устраняет перегрузку и сохраняет суммы часов (0.1881ms)
+✔ задачи другой недели не влияют на текущую загрузку и распределение (0.1749ms)
+✔ нулевая доступность обрабатывается без Infinity и NaN (0.106ms)
+✔ валидация отклоняет пустое название и отрицательные или дробные оценки вне шага (0.8433ms)
+✔ сохранённое состояние проходит проверку; испорченные данные отклоняются (0.1962ms)
+✔ дата приводится к понедельнику без зависимости от часового пояса (0.0726ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.6264
+
+✖ failing tests:
+
+test at tests\acceptance.test.mjs:17:1
+✖ недоступный сотрудник не получает задачи, а лишние задачи сохраняются (1.2903ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  32 !== 0
+  
+      at TestContext.<anonymous> (file:////demo/rehearsal-runs/qwen-full-2026-10-03-04/workspace/tests/acceptance.test.mjs:25:43)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 32,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

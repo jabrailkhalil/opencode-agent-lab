@@ -1,0 +1,26 @@
+{
+  "name": "opencode-agent-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Recorded multi-role OpenCode lab with verifiable checkpoints and spec-driven comparisons",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.14"
+  },
+  "scripts": {
+    "postinstall": "node node_modules/opencode-ai/postinstall.mjs",
+    "start": "node tools/launch.mjs",
+    "stop": "node tools/stop.mjs",
+    "check": "node tools/verify.mjs",
+    "doctor": "node tools/doctor.mjs",
+    "smoke": "node tools/smoke.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "reset": "node tools/reset.mjs",
+    "api:project": "node tools/create-api-project.mjs"
+  },
+  "dependencies": {
+    "opencode-ai": "1.18.34",
+    "@ai-sdk/openai-compatible": "3.0.68"
+  }
+}

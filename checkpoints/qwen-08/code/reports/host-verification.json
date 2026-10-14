@@ -1,0 +1,154 @@
+{
+  "checkedAt": "2026-10-03T14:20:15.583Z",
+  "elapsedMs": 5405,
+  "native": {
+    "exitCode": 0,
+    "passed": 0,
+    "failed": 0,
+    "tests": 0
+  },
+  "browser": {
+    "passed": 18,
+    "failed": 1,
+    "total": 19,
+    "results": [
+      {
+        "id": "QA-01",
+        "name": "Исходные задачи и расчёты",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-01.png",
+        "elapsedMs": 286
+      },
+      {
+        "id": "QA-02",
+        "name": "Адаптация 390/768/1100/1280 и четыре прогресса",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-02.png",
+        "elapsedMs": 360
+      },
+      {
+        "id": "QA-03a",
+        "name": "Trim-валидация и сохранение формы",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-03a.png",
+        "elapsedMs": 274
+      },
+      {
+        "id": "QA-03-_1",
+        "name": "Недопустимая оценка -1",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-03-_1.png",
+        "elapsedMs": 191
+      },
+      {
+        "id": "QA-03-0_7",
+        "name": "Недопустимая оценка 0.7",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-03-0_7.png",
+        "elapsedMs": 206
+      },
+      {
+        "id": "QA-04",
+        "name": "Создание и сохранение после перезагрузки",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-04.png",
+        "elapsedMs": 240
+      },
+      {
+        "id": "QA-05a",
+        "name": "Редактирование всех полей",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-05a.png",
+        "elapsedMs": 368
+      },
+      {
+        "id": "QA-05b",
+        "name": "Завершение освобождает нагрузку",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-05b.png",
+        "elapsedMs": 239
+      },
+      {
+        "id": "QA-05c",
+        "name": "Удаление задачи",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-05c.png",
+        "elapsedMs": 250
+      },
+      {
+        "id": "QA-06",
+        "name": "Поиск + ответственный, метрики независимы",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-06.png",
+        "elapsedMs": 165
+      },
+      {
+        "id": "QA-07a",
+        "name": "Переходы между неделями",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-07a.png",
+        "elapsedMs": 188
+      },
+      {
+        "id": "QA-07b",
+        "name": "Недельная доступность независима",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-07b.png",
+        "elapsedMs": 304
+      },
+      {
+        "id": "QA-08a",
+        "name": "Оба представления и общие данные",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-08a.png",
+        "elapsedMs": 197
+      },
+      {
+        "id": "QA-08b",
+        "name": "Drag-and-drop меняет и сохраняет статус",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(await p.getByTestId('column-done').getByTestId('task-TASK-101').isVisible())\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791037210410/QA-08b.png",
+        "elapsedMs": 192
+      },
+      {
+        "id": "QA-09",
+        "name": "Предпросмотр и отмена без изменения данных",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-09.png",
+        "elapsedMs": 201
+      },
+      {
+        "id": "QA-10",
+        "name": "Применение плана, сохранение часов и выполненных задач",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-10.png",
+        "elapsedMs": 198
+      },
+      {
+        "id": "QA-11",
+        "name": "Нулевая доступность и невозможные назначения",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-11.png",
+        "elapsedMs": 627
+      },
+      {
+        "id": "QA-12a",
+        "name": "Восстановление примера",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-12a.png",
+        "elapsedMs": 238
+      },
+      {
+        "id": "QA-12b",
+        "name": "Повреждённое сохранение не ломает загрузку",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791037210410/QA-12b.png",
+        "elapsedMs": 241
+      }
+    ]
+  },
+  "passed": false,
+  "screenshots": "screenshots/acceptance-1791037210410"
+}

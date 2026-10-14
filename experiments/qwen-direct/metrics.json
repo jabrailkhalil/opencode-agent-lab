@@ -1,0 +1,37 @@
+{
+  "run": {
+    "id": "qwen-direct",
+    "prefix": "flash",
+    "profile": "qwen",
+    "model": "qwen/qwen3.8-flash",
+    "spec": false,
+    "port": 4108,
+    "proxyPort": 4188,
+    "appPort": 4213,
+    "budgetUsd": 3,
+    "workspace": "/home/demo/live-vtb-20261011-qwen-direct"
+  },
+  "requests": 164,
+  "costUsd": 0.17699360200000008,
+  "promptTokens": 3623308,
+  "completionTokens": 153495,
+  "cachedTokens": 3273472,
+  "budgetUsd": 3,
+  "budgetStopped": false,
+  "unknownCost": true,
+  "reservedUsd": 0,
+  "startedAt": "2026-10-11T12:38:44.300Z",
+  "finishedAt": "2026-10-11T13:35:47.255Z",
+  "elapsedMs": 3422955,
+  "machineStageMs": 2671219,
+  "humanActiveMs": null,
+  "operator": "automatic orchestration",
+  "domainTests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "visualTests": "See visual-checks.json",
+  "stages": 14,
+  "unconfirmedUsd": 0.05565195999999999,
+  "costUpperBoundUsd": 0.23264556200000008
+}

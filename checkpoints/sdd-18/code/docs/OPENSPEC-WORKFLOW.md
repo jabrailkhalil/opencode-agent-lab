@@ -1,0 +1,2 @@
+OpenSpec 1.14.1 и интеграция OpenCode установлены официальным CLI. Изменение build-tracker.
+Analyst создаёт proposal.md, specs/tracker/spec.md (## ADDED Requirements, ### Requirement:, MUST/SHALL, #### Scenario:, WHEN/THEN), design.md и tasks.md (чеклист). Designer уточняет design.md. Developer реализует и отмечает tasks.md. Tester проверяет код и соответствие сценариям. CLI validate проверяет структуру, но не качество приложения.

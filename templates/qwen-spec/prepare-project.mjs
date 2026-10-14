@@ -1,0 +1,1 @@
+import fs from 'node:fs';import {bindRolePaths} from './role-path-permissions.mjs';const p=new URL('./opencode.json',import.meta.url),c=JSON.parse(fs.readFileSync(p,'utf8'));bindRolePaths(c,import.meta.dirname);fs.writeFileSync(p,JSON.stringify(c,null,2)+'\n');console.log('Role paths are bound to '+import.meta.dirname);

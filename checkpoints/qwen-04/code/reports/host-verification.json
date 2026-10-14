@@ -1,0 +1,196 @@
+{
+  "checkedAt": "2026-10-03T13:54:46.105Z",
+  "elapsedMs": 27743,
+  "native": {
+    "exitCode": 1,
+    "passed": 0,
+    "failed": 0,
+    "tests": 0
+  },
+  "browser": {
+    "passed": 6,
+    "failed": 13,
+    "total": 19,
+    "results": [
+      {
+        "id": "QA-01",
+        "name": "Исходные задачи и расчёты",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791035658604/QA-01.png",
+        "elapsedMs": 314
+      },
+      {
+        "id": "QA-02",
+        "name": "Адаптация 390/768/1100/1280 и четыре прогресса",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791035658604/QA-02.png",
+        "elapsedMs": 362
+      },
+      {
+        "id": "QA-03a",
+        "name": "Trim-валидация и сохранение формы",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"   \")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-03a.png",
+        "elapsedMs": 2716
+      },
+      {
+        "id": "QA-03-_1",
+        "name": "Недопустимая оценка -1",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Неверная оценка\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-03-_1.png",
+        "elapsedMs": 2720
+      },
+      {
+        "id": "QA-03-0_7",
+        "name": "Недопустимая оценка 0.7",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Неверная оценка\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-03-0_7.png",
+        "elapsedMs": 2698
+      },
+      {
+        "id": "QA-04",
+        "name": "Создание и сохранение после перезагрузки",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Задача приёмки\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-04.png",
+        "elapsedMs": 2702
+      },
+      {
+        "id": "QA-05a",
+        "name": "Редактирование всех полей",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Задача приёмки\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-05a.png",
+        "elapsedMs": 2710
+      },
+      {
+        "id": "QA-05b",
+        "name": "Завершение освобождает нагрузку",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Задача приёмки\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-05b.png",
+        "elapsedMs": 2698
+      },
+      {
+        "id": "QA-05c",
+        "name": "Удаление задачи",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Задача приёмки\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-05c.png",
+        "elapsedMs": 2692
+      },
+      {
+        "id": "QA-06",
+        "name": "Поиск + ответственный, метрики независимы",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791035658604/QA-06.png",
+        "elapsedMs": 179
+      },
+      {
+        "id": "QA-07a",
+        "name": "Переходы между неделями",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791035658604/QA-07a.png",
+        "elapsedMs": 204
+      },
+      {
+        "id": "QA-07b",
+        "name": "Недельная доступность независима",
+        "status": "FAIL",
+        "error": "Expected values to be strictly equal:\n\n24 !== 5\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-07b.png",
+        "elapsedMs": 328
+      },
+      {
+        "id": "QA-08a",
+        "name": "Оба представления и общие данные",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791035658604/QA-08a.png",
+        "elapsedMs": 217
+      },
+      {
+        "id": "QA-08b",
+        "name": "Drag-and-drop меняет и сохраняет статус",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(await p.getByTestId('column-done').getByTestId('task-TASK-101').isVisible())\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-08b.png",
+        "elapsedMs": 214
+      },
+      {
+        "id": "QA-09",
+        "name": "Предпросмотр и отмена без изменения данных",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791035658604/QA-09.png",
+        "elapsedMs": 246
+      },
+      {
+        "id": "QA-10",
+        "name": "Применение плана, сохранение часов и выполненных задач",
+        "status": "FAIL",
+        "error": "Перегрузка anna",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-10.png",
+        "elapsedMs": 208
+      },
+      {
+        "id": "QA-11",
+        "name": "Нулевая доступность и невозможные назначения",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(after.tasks.filter(t=>t.status!=='done').every(t=>t.assignee===null))\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-11.png",
+        "elapsedMs": 665
+      },
+      {
+        "id": "QA-12a",
+        "name": "Восстановление примера",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Задача приёмки\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-12a.png",
+        "elapsedMs": 2699
+      },
+      {
+        "id": "QA-12b",
+        "name": "Повреждённое сохранение не ломает загрузку",
+        "status": "FAIL",
+        "error": "locator.fill: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-title')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"text\" required=\"\" id=\"task-title\" class=\"form-control\" data-testid=\"task-title\"/>\u001b[22m\n\u001b[2m    - fill(\"Задача приёмки\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [
+          "Cannot set properties of null (setting 'textContent')"
+        ],
+        "screenshot": "screenshots/acceptance-1791035658604/QA-12b.png",
+        "elapsedMs": 2698
+      }
+    ]
+  },
+  "passed": false,
+  "screenshots": "screenshots/acceptance-1791035658604"
+}

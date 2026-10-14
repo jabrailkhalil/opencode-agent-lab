@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Поток — план команды</title>
+  <link rel="stylesheet" href="vendor/tabler/tabler.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page" id="app" data-testid="app">
+    <header class="appbar">
+      <div class="container">
+        <span class="brand">Поток</span>
+        <span class="muted">трекер задач и планировщик нагрузки</span>
+      </div>
+    </header>
+    <main class="container">
+      <section class="pagehead">
+        <h1>План команды</h1>
+        <div class="weeknav">
+          <button id="prev-week" data-testid="prev-week" class="btn btn-outline-secondary" type="button">&larr; Предыдущая неделя</button>
+          <output id="current-week" data-testid="current-week" class="weeklabel">—</output>
+          <button id="next-week" data-testid="next-week" class="btn btn-outline-secondary" type="button">Следующая неделя &rarr;</button>
+        </div>
+      </section>
+      <section class="toolbar" aria-label="Панель инструментов">
+        <input id="search" data-testid="search" class="form-control" type="search" placeholder="Поиск по названию или описанию" aria-label="Поиск">
+        <select id="filter-assignee" data-testid="filter-assignee" class="form-select" aria-label="Фильтр по ответственному"><option value="">Ответственный: все</option></select>
+        <div class="btn-group" role="group" aria-label="Представления">
+          <button id="view-board" data-testid="view-board" class="btn btn-primary" type="button">Доска</button>
+          <button id="view-employees" data-testid="view-employees" class="btn btn-outline-secondary" type="button">По сотрудникам</button>
+        </div>
+        <button id="new-task" data-testid="new-task" class="btn btn-primary" type="button">Новая задача</button>
+      </section>
+      <section id="metrics" class="metrics" aria-label="Метрики недели"></section>
+      <section id="board" data-testid="board" class="board" aria-label="Доска задач"></section>
+      <section id="employees-view" data-testid="employees-view" class="employees" hidden aria-label="Нагрузка по сотрудникам"></section>
+      <section class="footer-actions">
+        <button id="propose-plan" data-testid="propose-plan" class="btn btn-primary" type="button">Предложить распределение</button>
+        <button id="reset-demo" data-testid="reset-demo" class="btn btn-outline-danger" type="button">Восстановить учебные данные</button>
+      </section>
+    </main>
+
+    <div class="overlay" id="task-modal" data-testid="task-form" hidden>
+      <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
+        <div class="modal-title" id="task-modal-title">Новая задача</div>
+        <div class="modal-body">
+          <div id="task-error" data-testid="task-error" class="alert alert-danger" role="alert" aria-live="assertive" hidden></div>
+          <label class="form-label" for="task-title">Название (1–140 символов)</label>
+          <input id="task-title" data-testid="task-title" class="form-control" type="text">
+          <label class="form-label" for="task-description">Описание (до 1000 символов)</label>
+          <textarea id="task-description" data-testid="task-description" class="form-control" rows="3"></textarea>
+          <label class="form-label" for="task-hours">Оценка, часов (0,5–168, шаг 0,5)</label>
+          <input id="task-hours" data-testid="task-hours" class="form-control" type="number" step="0.5" min="0.5" max="168">
+          <label class="form-label" for="task-assignee">Ответственный</label>
+          <select id="task-assignee" data-testid="task-assignee" class="form-select"></select>
+          <label class="form-label" for="task-status">Статус</label>
+          <select id="task-status" data-testid="task-status" class="form-select">
+            <option value="todo">Новая</option>
+            <option value="doing">В работе</option>
+            <option value="done">Готово</option>
+          </select>
+          <label class="form-label" for="task-week">Неделя (понедельник)</label>
+          <input id="task-week" data-testid="task-week" class="form-control" type="date">
+        </div>
+        <div class="modal-actions">
+          <button id="task-cancel" data-testid="task-cancel" class="btn btn-outline-secondary" type="button">Отмена</button>
+          <button id="task-save" data-testid="task-save" class="btn btn-primary" type="button">Сохранить задачу</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="plan-modal" data-testid="plan-preview" hidden>
+      <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="plan-title">
+        <div class="modal-title" id="plan-title">Предпросмотр распределения</div>
+        <div id="plan-summary" class="plan-summary" aria-live="polite"></div>
+        <div id="plan-list" class="plan-list"></div>
+        <div class="modal-actions">
+          <button id="plan-cancel" data-testid="plan-cancel" class="btn btn-outline-secondary" type="button">Отменить предпросмотр</button>
+          <button id="plan-apply" data-testid="plan-apply" class="btn btn-primary" type="button">Применить распределение</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="confirm-modal" hidden>
+      <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+        <div class="modal-title" id="confirm-title">Подтверждение</div>
+        <div class="modal-body"><p id="confirm-text"></p></div>
+        <div class="modal-actions">
+          <button id="confirm-cancel" class="btn btn-outline-secondary" type="button">Отмена</button>
+          <button id="confirm-ok" data-testid="confirm-ok" class="btn btn-danger" type="button">Подтвердить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

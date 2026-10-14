@@ -1,0 +1,29 @@
+{
+  "id": "qwen-coder-archive",
+  "model": "qwen/qwen3-coder",
+  "date": "2026-10-03",
+  "noCacheCostUsd": 17.304976174999982,
+  "inputTokens": 26928080,
+  "outputTokens": 238022,
+  "billedRequests": 544,
+  "fullCycleMs": 3934903,
+  "providers": {
+    "Google": {
+      "requests": 264,
+      "noCacheCostUsd": 2.303731080000001
+    },
+    "DeepInfra": {
+      "requests": 130,
+      "noCacheCostUsd": 2.8242406000000004
+    },
+    "Alibaba": {
+      "requests": 113,
+      "noCacheCostUsd": 11.567417355
+    },
+    "Novita": {
+      "requests": 37,
+      "noCacheCostUsd": 0.6095871399999998
+    }
+  },
+  "source": "data/cost-comparison.json + data/timing-comparison.json; qwen-15/reports/FINAL.md"
+}

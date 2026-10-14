@@ -1,0 +1,57 @@
+{
+  "publicExport": true,
+  "note": "Personal machine paths were removed; hashes describe this public export.",
+  "files": [
+    {
+      "path": "dist/vendor/tabler/LICENSE",
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5",
+      "bytes": 1090
+    },
+    {
+      "path": "dist/vendor/tabler/source.json",
+      "sha256": "abc7455380f4ac2db11ac39c17de9303e7e3875c21a5669e448f4a31a64dded5",
+      "bytes": 373
+    },
+    {
+      "path": "dist/vendor/tabler/tabler.min.css",
+      "sha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403",
+      "bytes": 635394
+    },
+    {
+      "path": "docs/DESIGN-REFERENCE.md",
+      "sha256": "fbf4039dd4169ca7e03063d5b3fcc9aaad40ad09a19503943c5cb2410ae4807d",
+      "bytes": 1464
+    },
+    {
+      "path": "docs/DOMAIN-CONTRACT.md",
+      "sha256": "5219cbb4a6a123b43959febdf7fc9cb1a6e7d057fff554df5c4572eedb6e6fed",
+      "bytes": 3753
+    },
+    {
+      "path": "docs/QA-CHECKLIST.md",
+      "sha256": "15fab2369717d870ec797e01640fb3ba56b6e86f70bc4b18ffca6b28fd8ec66a",
+      "bytes": 2674
+    },
+    {
+      "path": "docs/seed-state.json",
+      "sha256": "5f7291f44c42a89a0de67f683994183261883c40fab49726300814abb31ec8ea",
+      "bytes": 3702
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "752a8e82a3b1f9d9901476b85ae87dfc63137823c7c8958e46a385d1636762c2",
+      "bytes": 5371
+    },
+    {
+      "path": "reports/ANALYSIS.md",
+      "sha256": "752a8e82a3b1f9d9901476b85ae87dfc63137823c7c8958e46a385d1636762c2",
+      "bytes": 5371
+    },
+    {
+      "path": "tests/acceptance.test.mjs",
+      "sha256": "d7b3d8ac7c25eb1e23c239e7b5153bde7832fe84d854d646bdaf80eeed339396",
+      "bytes": 4284
+    }
+  ],
+  "screenshots": []
+}

@@ -1,0 +1,123 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "publicExport": true,
+  "note": "Personal machine paths were removed; hashes describe this public export.",
+  "files": [
+    {
+      "path": "dist/app.js",
+      "sha256": "96390e6dd57725ec1d0202b0fd5a587de441bfb405419ac20a8967ba3234d276",
+      "bytes": 30023
+    },
+    {
+      "path": "dist/domain.js",
+      "sha256": "c12699b6e07d105d549835928c604fbbde9c9cf62f70173861129e21d828ec41",
+      "bytes": 14625
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "296afce3ba9caf54a685c6c40b1b98d4c183661f86907f49dbb0ae379e8f586b",
+      "bytes": 9767
+    },
+    {
+      "path": "dist/styles.css",
+      "sha256": "f7d3220e3b34543a5c31dedd8edf77af5d115cd6d5798facf84b056dd4be9546",
+      "bytes": 13814
+    },
+    {
+      "path": "dist/vendor/tabler/LICENSE",
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5",
+      "bytes": 1090
+    },
+    {
+      "path": "dist/vendor/tabler/source.json",
+      "sha256": "abc7455380f4ac2db11ac39c17de9303e7e3875c21a5669e448f4a31a64dded5",
+      "bytes": 373
+    },
+    {
+      "path": "dist/vendor/tabler/tabler.min.css",
+      "sha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403",
+      "bytes": 635394
+    },
+    {
+      "path": "docs/DESIGN-REFERENCE.md",
+      "sha256": "fbf4039dd4169ca7e03063d5b3fcc9aaad40ad09a19503943c5cb2410ae4807d",
+      "bytes": 1464
+    },
+    {
+      "path": "docs/DOMAIN-CONTRACT.md",
+      "sha256": "5219cbb4a6a123b43959febdf7fc9cb1a6e7d057fff554df5c4572eedb6e6fed",
+      "bytes": 3753
+    },
+    {
+      "path": "docs/QA-CHECKLIST.md",
+      "sha256": "15fab2369717d870ec797e01640fb3ba56b6e86f70bc4b18ffca6b28fd8ec66a",
+      "bytes": 2674
+    },
+    {
+      "path": "docs/seed-state.json",
+      "sha256": "5f7291f44c42a89a0de67f683994183261883c40fab49726300814abb31ec8ea",
+      "bytes": 3702
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "7436fb2027b254fde937868363cc22ccbef8e3cf263b1838d8b9dd0ef3cbab98",
+      "bytes": 5380
+    },
+    {
+      "path": "reports/ANALYSIS.md",
+      "sha256": "291d01593c2f88a9e8b68a74b80a8e7d64922fab2e163cf1b005505534269671",
+      "bytes": 32904
+    },
+    {
+      "path": "reports/DESIGN-PLAN.md",
+      "sha256": "cf3476fcae93e2a318777ae186ac2d78b2dac4b181ad70c20cc7babf19774228",
+      "bytes": 20710
+    },
+    {
+      "path": "reports/DEVELOPMENT.md",
+      "sha256": "b394274c794beb1683504de4c87fc7fa8f7702900a12965383763c797552b8f3",
+      "bytes": 11359
+    },
+    {
+      "path": "reports/host-verification.json",
+      "sha256": "992b43c7fef0bdf9023563f41aec049a33029460ead4439b720a4ae8d745998b",
+      "bytes": 4994
+    },
+    {
+      "path": "reports/mcp-01-initial-390.png",
+      "sha256": "ddc85a783bd7286cdb4827dab4f28dede864775dbbb959ea893daaa5ded77382",
+      "bytes": 178076
+    },
+    {
+      "path": "reports/mcp-02-created-reloaded.png",
+      "sha256": "fca1aceb39b935e03aa57b02db6ba45c0c4b9e75fe75cb73101e93e5ec34215c",
+      "bytes": 186445
+    },
+    {
+      "path": "reports/mcp-03-plan-preview.png",
+      "sha256": "9d33e94d0002a60adc8bf9f0aa0b5a45b0b2d4657724ed399f624cc5ac3f9809",
+      "bytes": 245914
+    },
+    {
+      "path": "reports/mcp-04-plan-cancelled.png",
+      "sha256": "e1e93f8a818d265f58ffcb3ce83ec5cbe1a172f27a7ca6067e5cde3944211676",
+      "bytes": 188350
+    },
+    {
+      "path": "reports/node-tests.txt",
+      "sha256": "0dbece1c149dabd5d6426c7eb29b11795376d108c7b54ba2d85b1456c585ac54",
+      "bytes": 1330
+    },
+    {
+      "path": "reports/QA-RESULTS.md",
+      "sha256": "8caab38827a73b594dab57bb925483f272811c11195426ceacf52ac12c0e7197",
+      "bytes": 6971
+    },
+    {
+      "path": "tests/acceptance.test.mjs",
+      "sha256": "d7b3d8ac7c25eb1e23c239e7b5153bde7832fe84d854d646bdaf80eeed339396",
+      "bytes": 4284
+    }
+  ],
+  "screenshots": []
+}

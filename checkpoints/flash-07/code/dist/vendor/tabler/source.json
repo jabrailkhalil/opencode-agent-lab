@@ -1,0 +1,9 @@
+{
+  "package": "@tabler/core",
+  "version": "1.6.1",
+  "source": "https://registry.npmjs.org/@tabler/core/-/core-1.6.1.tgz",
+  "cssSha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403",
+  "license": "MIT",
+  "licenseSource": "https://raw.githubusercontent.com/tabler/tabler/dev/LICENSE",
+  "preview": "https://preview.tabler.io/tasks.html"
+}

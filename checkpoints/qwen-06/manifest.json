@@ -1,0 +1,112 @@
+{
+  "publicExport": true,
+  "note": "Personal machine paths were removed; hashes describe this public export.",
+  "files": [
+    {
+      "path": "dist/app.js",
+      "sha256": "0418ef935a499aaabca4d6b725779b0bf97d46ee1a2b1d3636d7a70ba0e13899",
+      "bytes": 23435
+    },
+    {
+      "path": "dist/domain.js",
+      "sha256": "ab3974bcc7bdd768c38c5ce68bba840199219fd425fb2770e6168ab3b6d07992",
+      "bytes": 16902
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "3139597a1b6eefb1990cc7912fdd8dca791f840ae443fc6d1dca4630e994cc74",
+      "bytes": 6640
+    },
+    {
+      "path": "dist/styles.css",
+      "sha256": "e71fe2d882f2022143b796c0e80cc9c511e69e454b0cc813c4cdfc5fd72f192d",
+      "bytes": 9169
+    },
+    {
+      "path": "dist/vendor/tabler/LICENSE",
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5",
+      "bytes": 1090
+    },
+    {
+      "path": "dist/vendor/tabler/source.json",
+      "sha256": "abc7455380f4ac2db11ac39c17de9303e7e3875c21a5669e448f4a31a64dded5",
+      "bytes": 373
+    },
+    {
+      "path": "dist/vendor/tabler/tabler.min.css",
+      "sha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403",
+      "bytes": 635394
+    },
+    {
+      "path": "docs/DESIGN-REFERENCE.md",
+      "sha256": "fbf4039dd4169ca7e03063d5b3fcc9aaad40ad09a19503943c5cb2410ae4807d",
+      "bytes": 1464
+    },
+    {
+      "path": "docs/DOMAIN-CONTRACT.md",
+      "sha256": "5219cbb4a6a123b43959febdf7fc9cb1a6e7d057fff554df5c4572eedb6e6fed",
+      "bytes": 3753
+    },
+    {
+      "path": "docs/QA-CHECKLIST.md",
+      "sha256": "15fab2369717d870ec797e01640fb3ba56b6e86f70bc4b18ffca6b28fd8ec66a",
+      "bytes": 2674
+    },
+    {
+      "path": "docs/seed-state.json",
+      "sha256": "5f7291f44c42a89a0de67f683994183261883c40fab49726300814abb31ec8ea",
+      "bytes": 3702
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "7436fb2027b254fde937868363cc22ccbef8e3cf263b1838d8b9dd0ef3cbab98",
+      "bytes": 5380
+    },
+    {
+      "path": "reports/ANALYSIS.md",
+      "sha256": "80bc36248d21ab09ec43e353edd610b5502c8ba44b9e86165e37c0f597e94654",
+      "bytes": 8218
+    },
+    {
+      "path": "reports/DESIGN-PLAN.md",
+      "sha256": "909238742c3987d7dc0a5c678137aa6951dbde434e466a383b19e9534da45728",
+      "bytes": 5606
+    },
+    {
+      "path": "reports/host-verification.json",
+      "sha256": "7014ff3fffc31b13fc313d024e2e0a84a3f2d5f637660318193be329533a5b1e",
+      "bytes": 12090
+    },
+    {
+      "path": "reports/node-tests.txt",
+      "sha256": "fb4cd35a55e26ee33e6d6048d1c1f7de48371c4d47194087013fa8792516d745",
+      "bytes": 2290
+    },
+    {
+      "path": "reports/QA-RESULTS.md",
+      "sha256": "0a2e37e6cfcd1d67a1572cef919e34cf9a93ad0071a9b2e6c80a8f46c8345554",
+      "bytes": 5974
+    },
+    {
+      "path": "reports/smoke-final.png",
+      "sha256": "a32f5fc1a162767933cb4d8cda1a57eaf5dba26d13c96ef9bd2471681674b790",
+      "bytes": 65413
+    },
+    {
+      "path": "reports/smoke-initial.png",
+      "sha256": "4a89fbc7546dd9c0f5c8988d12a241768a3e817a4a3d91f616ac0620957d9da0",
+      "bytes": 78111
+    },
+    {
+      "path": "reports/smoke-test.png",
+      "sha256": "a535a1868b1a33526419ef51c109d0c32d91125aad177ab285adfdde7bd8461a",
+      "bytes": 77446
+    },
+    {
+      "path": "tests/acceptance.test.mjs",
+      "sha256": "d7b3d8ac7c25eb1e23c239e7b5153bde7832fe84d854d646bdaf80eeed339396",
+      "bytes": 4284
+    }
+  ],
+  "screenshots": []
+}

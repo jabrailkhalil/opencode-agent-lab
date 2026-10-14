@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поток - трекер задач и планировщик нагрузки</title>
+  <link rel="stylesheet" href="./vendor/tabler/tabler.min.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app" data-testid="app">
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="app-title">Поток</h1>
+      
+      <!-- Controls -->
+      <div class="controls">
+        <div class="week-nav">
+          <button class="btn" data-testid="prev-week">← Предыдущая</button>
+          <div class="week-display" data-testid="current-week">28.09.2026</div>
+          <button class="btn" data-testid="next-week">Следующая →</button>
+        </div>
+        
+        <div class="search-container">
+          <input type="text" class="form-control search-input" placeholder="Поиск по задачам..." data-testid="search">
+        </div>
+        
+        <div class="filter-container">
+          <select class="form-select" data-testid="filter-assignee">
+            <option value="">Все сотрудники</option>
+          </select>
+        </div>
+        
+        <div class="view-toggle">
+          <button class="view-btn active" data-testid="view-board">Доска</button>
+          <button class="view-btn" data-testid="view-employees">Сотрудники</button>
+        </div>
+        
+        <button class="btn btn-primary" data-testid="new-task">Новая задача</button>
+      </div>
+    </header>
+    
+    <!-- Employee Metrics -->
+    <div class="employee-metrics">
+      <!-- Employee metrics will be rendered here dynamically -->
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Board View -->
+      <div class="board" data-testid="board">
+        <div class="column" data-testid="column-todo">
+          <div class="column-header">
+            <h2 class="column-title">Новые</h2>
+            <div class="column-count">0</div>
+          </div>
+          <div class="task-list"></div>
+        </div>
+        
+        <div class="column" data-testid="column-doing">
+          <div class="column-header">
+            <h2 class="column-title">В работе</h2>
+            <div class="column-count">0</div>
+          </div>
+          <div class="task-list"></div>
+        </div>
+        
+        <div class="column" data-testid="column-done">
+          <div class="column-header">
+            <h2 class="column-title">Готово</h2>
+            <div class="column-count">0</div>
+          </div>
+          <div class="task-list"></div>
+        </div>
+      </div>
+      
+      <!-- Employees View -->
+      <div class="employees-view" data-testid="employees-view" style="display: none;">
+        <!-- Employee sections will be rendered here dynamically -->
+      </div>
+    </main>
+    
+    <!-- Action Buttons -->
+    <div class="main-content text-center mt-2">
+      <button class="btn btn-primary me-2" data-testid="propose-plan">Предложить распределение</button>
+      <button class="btn" data-testid="reset-demo">Сбросить пример</button>
+    </div>
+  </div>
+  
+  <!-- Task Form Modal -->
+  <div class="modal" data-testid="task-form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Новая задача</h2>
+        <button class="btn btn-close" id="task-cancel">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="task-form">
+          <input type="hidden" id="task-id">
+          
+          <div class="form-group">
+            <label for="task-title" class="form-label">Название *</label>
+            <input type="text" id="task-title" class="form-control" data-testid="task-title" required>
+            <div class="form-error" data-testid="task-error"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-description" class="form-label">Описание</label>
+            <textarea id="task-description" class="form-control form-textarea" data-testid="task-description"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-hours" class="form-label">Оценка (часы) *</label>
+            <input type="number" id="task-hours" class="form-control" min="0.5" max="168" step="0.5" data-testid="task-hours" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-assignee" class="form-label">Ответственный</label>
+            <select id="task-assignee" class="form-select" data-testid="task-assignee">
+              <option value="">Без ответственного</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-status" class="form-label">Статус *</label>
+            <select id="task-status" class="form-select" data-testid="task-status" required>
+              <option value="todo">Новая</option>
+              <option value="doing">В работе</option>
+              <option value="done">Готово</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-week" class="form-label">Неделя *</label>
+            <input type="date" id="task-week" class="form-control" data-testid="task-week" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="task-cancel">Отмена</button>
+        <button class="btn btn-primary" id="task-save" data-testid="task-save">Сохранить</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Plan Preview Modal -->
+  <div class="modal" data-testid="plan-preview">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Предлагаемое распределение</h2>
+        <button class="btn btn-close" data-testid="plan-cancel">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="plan-preview-list">
+          <!-- Plan items will be rendered here dynamically -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-testid="plan-cancel-modal">Отмена</button>
+        <button class="btn btn-primary" data-testid="plan-apply">Применить</button>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

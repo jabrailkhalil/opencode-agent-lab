@@ -1,0 +1,158 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "publicExport": true,
+  "note": "Personal machine paths were removed; hashes describe this public export.",
+  "files": [
+    {
+      "path": "dist/app.js",
+      "bytes": 24055,
+      "sha256": "9eb75f2fe5939072b3d203ed98abbb24083701258ed72b15ed96c5dd4ed16fbf"
+    },
+    {
+      "path": "dist/domain.js",
+      "bytes": 9459,
+      "sha256": "0fe6b6f5f786ffd5ef9607995250ce8cb538b6189958ac0ca8af1da0075d1eb4"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 3876,
+      "sha256": "72ab1c4683b0ff3050767b80724fdfa375d0b4ac39c0d22d738ee303fa1b7075"
+    },
+    {
+      "path": "dist/styles.css",
+      "bytes": 5208,
+      "sha256": "3005233a64daa13fee8b97d2e4dbccb9ec043ed9aa5a03a2703d7f309dc231bd"
+    },
+    {
+      "path": "dist/vendor/tabler/LICENSE",
+      "bytes": 1090,
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5"
+    },
+    {
+      "path": "dist/vendor/tabler/source.json",
+      "bytes": 373,
+      "sha256": "abc7455380f4ac2db11ac39c17de9303e7e3875c21a5669e448f4a31a64dded5"
+    },
+    {
+      "path": "dist/vendor/tabler/tabler.min.css",
+      "bytes": 635394,
+      "sha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403"
+    },
+    {
+      "path": "docs/BRIEF.md",
+      "bytes": 4927,
+      "sha256": "fd83c9f574452bccec30cea50a4039caad96f92ed519ce7f4a32b5dfa3cf80b2"
+    },
+    {
+      "path": "docs/DESIGN-REFERENCE.md",
+      "bytes": 1464,
+      "sha256": "fbf4039dd4169ca7e03063d5b3fcc9aaad40ad09a19503943c5cb2410ae4807d"
+    },
+    {
+      "path": "docs/INTERFACES.md",
+      "bytes": 3753,
+      "sha256": "5219cbb4a6a123b43959febdf7fc9cb1a6e7d057fff554df5c4572eedb6e6fed"
+    },
+    {
+      "path": "docs/OPENSPEC-WORKFLOW.md",
+      "bytes": 592,
+      "sha256": "5288d7911c9502e5827907b9e4f4cad0d2cd000b1144e8906232d86f833d90d9"
+    },
+    {
+      "path": "docs/seed-state.json",
+      "bytes": 3702,
+      "sha256": "5f7291f44c42a89a0de67f683994183261883c40fab49726300814abb31ec8ea"
+    },
+    {
+      "path": "openspec/changes/archive/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "openspec/changes/build-tracker/.openspec.yaml",
+      "bytes": 40,
+      "sha256": "3ae9e70fc0101b2a700cedadfa7b02caa5799fdfd1db033999469c527448c6b2"
+    },
+    {
+      "path": "openspec/changes/build-tracker/design.md",
+      "bytes": 8409,
+      "sha256": "059847784272f2f2250144788199d98e5d2b575aee52494539afe1edf80b44dd"
+    },
+    {
+      "path": "openspec/changes/build-tracker/proposal.md",
+      "bytes": 2732,
+      "sha256": "8d9477e9c8828691537da8255722597d85a33aa96afc0d054fc6e6b5df1cdad7"
+    },
+    {
+      "path": "openspec/changes/build-tracker/specs/tracker/spec.md",
+      "bytes": 15874,
+      "sha256": "072e4b52d3e0499fd9bb5fa0eb0b03538993fb7f7bef856eae778e8f8d3b68d2"
+    },
+    {
+      "path": "openspec/changes/build-tracker/tasks.md",
+      "bytes": 2830,
+      "sha256": "784a3991e2dde7fa7b7ab219569385d516443eb1f6bbdf706c1f7e031541f1ca"
+    },
+    {
+      "path": "openspec/config.yaml",
+      "bytes": 768,
+      "sha256": "2dc0b9247a85b2dcdd5d83cb8a35a0088fd3edc6c20d3148523a2d1e36e69e49"
+    },
+    {
+      "path": "openspec/specs/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/acceptance.txt",
+      "bytes": 1330,
+      "sha256": "9e54e335e965398b11d21b6a0cc32fa6209ae46bffcbcb50c57ca83485574d3c"
+    },
+    {
+      "path": "reports/ANALYSIS.md",
+      "bytes": 4231,
+      "sha256": "3173c6689bbf670ee6b4afc364a667310d89c3c66aaf8f6ed4a543864bb75262"
+    },
+    {
+      "path": "reports/DESIGN-PLAN.md",
+      "bytes": 14278,
+      "sha256": "049ef6123d74d69ec9f3adb95b087af013ccb0e40cc1c30a1ae117232971cfc9"
+    },
+    {
+      "path": "reports/DESIGN-REVIEW.md",
+      "bytes": 12433,
+      "sha256": "4dfce207939c344e4ce1462faaa7c518100060e711dcd18479d8c3843b8b311f"
+    },
+    {
+      "path": "reports/DEVELOPMENT.md",
+      "bytes": 7552,
+      "sha256": "385d35902fd2a4ba81d7d8bc654dc20233b853b1f178bf9263eb8dd121fda03f"
+    },
+    {
+      "path": "reports/QA-RESULTS.md",
+      "bytes": 6735,
+      "sha256": "e510bde25ca6ba61438beb2933c3c5ea2378d329f3a329f39c76244306c3357f"
+    },
+    {
+      "path": "tests/acceptance.test.mjs",
+      "bytes": 4284,
+      "sha256": "d7b3d8ac7c25eb1e23c239e7b5153bde7832fe84d854d646bdaf80eeed339396"
+    },
+    {
+      "path": "tests/agent-css.test.mjs",
+      "bytes": 1862,
+      "sha256": "8feb028a7b222816686adf6aa9c2aa7180482104df90dc1b8d7c48ae8528c89f"
+    },
+    {
+      "path": "tests/agent-qa.test.mjs",
+      "bytes": 3225,
+      "sha256": "b4e3e5b313f55b759df4be81e4c388a1bbb53f9200c8676b66afee9caea1d055"
+    },
+    {
+      "path": "tests/agent-qa2.test.mjs",
+      "bytes": 3758,
+      "sha256": "9ee5dbf54144c0694304d7a302db7480aa720efc1f603219a852a9e2fd2027b4"
+    }
+  ],
+  "screenshots": []
+}

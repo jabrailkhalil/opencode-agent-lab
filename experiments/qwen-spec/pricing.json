@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-10-13T19:34:36.670Z",
+  "model": "qwen/qwen3.8-flash",
+  "pricing": {
+    "prompt": "0.00000015",
+    "completion": "0.00000047",
+    "input_cache_read": "0.000000016"
+  }
+}

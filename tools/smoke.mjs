@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+const root=path.resolve(import.meta.dirname,'..'),setup=JSON.parse(fs.readFileSync(path.join(root,'data/live-preparation.json'),'utf8'));
+const before=await fetch('http://127.0.0.1:4216/__demo/next').then(r=>r.json());
+if(!before.recording||!before.next)throw new Error('Left recorded branch is not ready');
+const plan=setup.profiles.find(p=>p.profile==='claude');
+const run=spawnSync(setup.executable,['run','--attach','http://127.0.0.1:'+plan.agentPort,'--dir',plan.workspace,'--agent',before.next.role,'--format','json',before.next.prompt],{cwd:root,encoding:'utf8',windowsHide:true,timeout:60000});
+if(run.status!==0)throw new Error(run.stderr||run.stdout||'OpenCode smoke run failed');
+const after=await fetch('http://127.0.0.1:4216/__demo/next').then(r=>r.json());
+if(after.current!==before.next.id)throw new Error('Checkpoint did not advance: '+before.current+' → '+after.current);
+console.log(JSON.stringify({from:before.current,to:after.current,role:before.next.role,paidApiCalls:0}));

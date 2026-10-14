@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Поток — трекер задач и загрузка команды</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="vendor/tabler/tabler.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page potok-root" id="root" aria-busy="true">
+    <header class="navbar navbar-expand-md potok-navbar">
+      <div class="container-xl potok-navbar-inner">
+        <div class="potok-brand">
+          <span class="potok-logo" aria-hidden="true">П</span>
+          <div>
+            <strong class="potok-brand-name">Поток</strong>
+            <span class="potok-brand-sub">Трекер задач и загрузка</span>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-secondary" data-testid="reset-demo">Восстановить пример</button>
+      </div>
+    </header>
+
+    <main class="page-wrapper potok-main">
+      <div class="container-xl potok-container">
+        <div id="storage-notice" class="alert alert-warning alert-dismissible potok-notice" role="status" data-testid="storage-notice" hidden>
+          <span id="storage-notice-text">Сохранённые данные повреждены, загружен учебный пример.</span>
+          <button type="button" class="btn-close" id="storage-notice-close" aria-label="Закрыть уведомление"></button>
+        </div>
+
+        <div class="page-header potok-page-header">
+          <h1 class="page-title">План команды</h1>
+          <div class="potok-header-actions">
+            <div class="potok-week" role="group" aria-label="Выбор недели">
+              <button type="button" class="btn" data-testid="prev-week" aria-label="Предыдущая неделя">‹ Пред.</button>
+              <button type="button" class="btn potok-week-current" data-testid="current-week" id="current-week" title="Вернуться к начальной неделе 2026-09-28">
+                <time id="week-label" datetime="2026-09-28">28 сен – 4 окт 2026</time>
+                <small id="week-iso">неделя с 2026-09-28</small>
+              </button>
+              <button type="button" class="btn" data-testid="next-week" aria-label="Следующая неделя">След. ›</button>
+            </div>
+            <button type="button" class="btn btn-primary" data-testid="new-task">Новая задача</button>
+          </div>
+        </div>
+
+        <section class="potok-metrics" aria-label="Недельные метрики">
+          <div class="card potok-metric"><div class="card-body">
+            <div class="potok-metric-label">Задач на неделе</div>
+            <div class="potok-metric-value" data-testid="metric-tasks" id="metric-tasks">0</div>
+          </div></div>
+          <div class="card potok-metric"><div class="card-body">
+            <div class="potok-metric-label">Всего часов</div>
+            <div class="potok-metric-value" data-testid="metric-hours" id="metric-hours">0 ч</div>
+          </div></div>
+          <div class="card potok-metric"><div class="card-body">
+            <div class="potok-metric-label">Активно</div>
+            <div class="potok-metric-value" data-testid="metric-active" id="metric-active">0 задач / 0 ч</div>
+          </div></div>
+          <div class="card potok-metric"><div class="card-body">
+            <div class="potok-metric-label">Выполнено</div>
+            <div class="potok-metric-value" data-testid="metric-done" id="metric-done">0 ч · 0%</div>
+          </div></div>
+        </section>
+
+        <section class="potok-team" aria-labelledby="team-title">
+          <h2 class="potok-section-title" id="team-title">Загрузка команды</h2>
+          <div class="potok-team-grid" id="team-load"></div>
+        </section>
+
+        <section class="card potok-controls" aria-label="Поиск, фильтр и действия">
+          <div class="card-body potok-controls-grid">
+            <div class="potok-field potok-field-search">
+              <label class="form-label" for="search">Поиск</label>
+              <input type="search" id="search" class="form-control" data-testid="search" placeholder="Название или описание" autocomplete="off">
+            </div>
+            <div class="potok-field potok-field-filter">
+              <label class="form-label" for="filter-assignee">Ответственный</label>
+              <select id="filter-assignee" class="form-select" data-testid="filter-assignee"></select>
+            </div>
+            <div class="potok-field potok-field-views">
+              <span class="form-label" id="views-label">Представление</span>
+              <div class="btn-group potok-views" role="group" aria-labelledby="views-label">
+                <button type="button" class="btn active" data-testid="view-board" aria-pressed="true">Доска</button>
+                <button type="button" class="btn" data-testid="view-employees" aria-pressed="false">По сотрудникам</button>
+              </div>
+            </div>
+            <div class="potok-field potok-field-plan">
+              <button type="button" class="btn btn-outline-primary" data-testid="propose-plan">Предложить распределение</button>
+            </div>
+            <div class="potok-results" id="results-count" data-testid="results-count" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="card potok-plan" id="plan-preview" data-testid="plan-preview" aria-labelledby="plan-title" hidden></section>
+
+        <div id="view-area">
+          <div id="board" class="potok-board" aria-label="Доска задач" hidden></div>
+          <div id="employees-view" class="potok-employees-view" aria-label="Задачи по сотрудникам" hidden></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop fade" id="modal-backdrop" hidden></div>
+  <div class="modal modal-blur" id="task-modal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="task-modal-title" hidden>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" data-testid="task-form" id="task-form" novalidate>
+        <div class="modal-header">
+          <h2 class="modal-title" id="task-modal-title">Новая задача</h2>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert" data-testid="task-error" id="task-error" hidden></div>
+          <div class="potok-form-field">
+            <label class="form-label" for="task-title">Название <span class="text-danger" aria-hidden="true">*</span></label>
+            <input type="text" class="form-control" id="task-title" name="title" data-testid="task-title" autocomplete="off">
+            <div class="invalid-feedback" data-error-for="title"></div>
+          </div>
+          <div class="potok-form-field">
+            <label class="form-label" for="task-description">Описание</label>
+            <textarea class="form-control" id="task-description" name="description" rows="3" data-testid="task-description"></textarea>
+            <div class="invalid-feedback" data-error-for="description"></div>
+            <div class="potok-counter" id="description-counter" aria-hidden="true">0 / 1000</div>
+          </div>
+          <div class="potok-form-grid">
+            <div class="potok-form-field">
+              <label class="form-label" for="task-assignee">Ответственный</label>
+              <select class="form-select" id="task-assignee" name="assignee" data-testid="task-assignee"></select>
+              <div class="invalid-feedback" data-error-for="assignee"></div>
+            </div>
+            <div class="potok-form-field">
+              <label class="form-label" for="task-hours">Оценка, ч</label>
+              <input type="number" class="form-control" id="task-hours" name="hours" step="0.5" min="0.5" max="168" inputmode="decimal" data-testid="task-hours">
+              <div class="invalid-feedback" data-error-for="hours"></div>
+            </div>
+            <div class="potok-form-field">
+              <label class="form-label" for="task-status">Статус</label>
+              <select class="form-select" id="task-status" name="status" data-testid="task-status">
+                <option value="todo">Новая</option>
+                <option value="doing">В работе</option>
+                <option value="done">Готово</option>
+              </select>
+              <div class="invalid-feedback" data-error-for="status"></div>
+            </div>
+            <div class="potok-form-field">
+              <label class="form-label" for="task-week">Неделя (понедельник)</label>
+              <input type="date" class="form-control" id="task-week" name="week" data-testid="task-week">
+              <div class="invalid-feedback" data-error-for="week"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-testid="task-cancel" id="task-cancel">Отмена</button>
+          <button type="submit" class="btn btn-primary" data-testid="task-save" id="task-save">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="potok-toast" id="toast" role="status" aria-live="polite" data-testid="toast"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

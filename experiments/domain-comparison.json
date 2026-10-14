@@ -1,0 +1,240 @@
+{
+  "at": "2026-10-13T19:39:30.850Z",
+  "protocol": "Same 18 checks derived from original brief, fixed before Qwen + OpenSpec finished. Neither code nor original acceptance tests changed.",
+  "results": [
+    {
+      "label": "qwen-direct",
+      "code": "checkpoints/flash-13/code",
+      "passed": 16,
+      "total": 18,
+      "checks": [
+        {
+          "id": "load",
+          "requirement": "BRIEF §7",
+          "title": "Анна: 32/24, 133%, +8",
+          "pass": true
+        },
+        {
+          "id": "progress",
+          "requirement": "BRIEF §7",
+          "title": "Прогресс по часам: Мария 43%, Илья 25%",
+          "pass": true
+        },
+        {
+          "id": "zero",
+          "requirement": "BRIEF §7",
+          "title": "Нулевая доступность без NaN / Infinity",
+          "pass": true
+        },
+        {
+          "id": "plan",
+          "requirement": "BRIEF §8",
+          "title": "70 часов, доступно 16: остаток 54",
+          "pass": true
+        },
+        {
+          "id": "plan-readonly",
+          "requirement": "BRIEF §8",
+          "title": "Предпросмотр не меняет данные",
+          "pass": true
+        },
+        {
+          "id": "plan-invariants",
+          "requirement": "BRIEF §8",
+          "title": "План сохраняет задачи, часы и выполненные",
+          "pass": true
+        },
+        {
+          "id": "title",
+          "requirement": "BRIEF §10",
+          "title": "Пустое название после trim отклоняется",
+          "pass": true
+        },
+        {
+          "id": "hours",
+          "requirement": "BRIEF §10",
+          "title": "Границы оценки и шаг 0,5",
+          "pass": true
+        },
+        {
+          "id": "assignee",
+          "requirement": "BRIEF §10",
+          "title": "Несуществующий ответственный отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-valid",
+          "requirement": "BRIEF §9",
+          "title": "Корректное состояние читается",
+          "pass": true
+        },
+        {
+          "id": "stored-null",
+          "requirement": "BRIEF §9",
+          "title": "null и неверная структура отклоняются без падения",
+          "pass": true
+        },
+        {
+          "id": "stored-duplicate",
+          "requirement": "BRIEF §9",
+          "title": "Дубликаты задач отклоняются",
+          "pass": true
+        },
+        {
+          "id": "stored-hours",
+          "requirement": "BRIEF §9–10",
+          "title": "Повреждённые часы в хранилище отклоняются",
+          "pass": true
+        },
+        {
+          "id": "stored-date",
+          "requirement": "BRIEF §9–10",
+          "title": "Неверная дата задачи в хранилище отклоняется",
+          "pass": false,
+          "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
+        },
+        {
+          "id": "stored-capacity-date",
+          "requirement": "BRIEF §5,9",
+          "title": "Неверный ключ недели доступности отклоняется",
+          "pass": false,
+          "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
+        },
+        {
+          "id": "stored-capacity",
+          "requirement": "BRIEF §6,9",
+          "title": "Неверная доступность в хранилище отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-status",
+          "requirement": "BRIEF §2,9",
+          "title": "Неизвестный сохранённый статус отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-assignee",
+          "requirement": "BRIEF §9–10",
+          "title": "Ссылка на отсутствующего сотрудника отклоняется",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "label": "qwen-spec",
+      "code": "experiment-2026-10-13/qwen-spec/snapshots/qspec-11/code",
+      "passed": 18,
+      "total": 18,
+      "checks": [
+        {
+          "id": "load",
+          "requirement": "BRIEF §7",
+          "title": "Анна: 32/24, 133%, +8",
+          "pass": true
+        },
+        {
+          "id": "progress",
+          "requirement": "BRIEF §7",
+          "title": "Прогресс по часам: Мария 43%, Илья 25%",
+          "pass": true
+        },
+        {
+          "id": "zero",
+          "requirement": "BRIEF §7",
+          "title": "Нулевая доступность без NaN / Infinity",
+          "pass": true
+        },
+        {
+          "id": "plan",
+          "requirement": "BRIEF §8",
+          "title": "70 часов, доступно 16: остаток 54",
+          "pass": true
+        },
+        {
+          "id": "plan-readonly",
+          "requirement": "BRIEF §8",
+          "title": "Предпросмотр не меняет данные",
+          "pass": true
+        },
+        {
+          "id": "plan-invariants",
+          "requirement": "BRIEF §8",
+          "title": "План сохраняет задачи, часы и выполненные",
+          "pass": true
+        },
+        {
+          "id": "title",
+          "requirement": "BRIEF §10",
+          "title": "Пустое название после trim отклоняется",
+          "pass": true
+        },
+        {
+          "id": "hours",
+          "requirement": "BRIEF §10",
+          "title": "Границы оценки и шаг 0,5",
+          "pass": true
+        },
+        {
+          "id": "assignee",
+          "requirement": "BRIEF §10",
+          "title": "Несуществующий ответственный отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-valid",
+          "requirement": "BRIEF §9",
+          "title": "Корректное состояние читается",
+          "pass": true
+        },
+        {
+          "id": "stored-null",
+          "requirement": "BRIEF §9",
+          "title": "null и неверная структура отклоняются без падения",
+          "pass": true
+        },
+        {
+          "id": "stored-duplicate",
+          "requirement": "BRIEF §9",
+          "title": "Дубликаты задач отклоняются",
+          "pass": true
+        },
+        {
+          "id": "stored-hours",
+          "requirement": "BRIEF §9–10",
+          "title": "Повреждённые часы в хранилище отклоняются",
+          "pass": true
+        },
+        {
+          "id": "stored-date",
+          "requirement": "BRIEF §9–10",
+          "title": "Неверная дата задачи в хранилище отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-capacity-date",
+          "requirement": "BRIEF §5,9",
+          "title": "Неверный ключ недели доступности отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-capacity",
+          "requirement": "BRIEF §6,9",
+          "title": "Неверная доступность в хранилище отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-status",
+          "requirement": "BRIEF §2,9",
+          "title": "Неизвестный сохранённый статус отклоняется",
+          "pass": true
+        },
+        {
+          "id": "stored-assignee",
+          "requirement": "BRIEF §9–10",
+          "title": "Ссылка на отсутствующего сотрудника отклоняется",
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

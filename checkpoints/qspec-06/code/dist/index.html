@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Поток — план команды</title>
+  <link rel="stylesheet" href="vendor/tabler/tabler.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page" data-testid="app">
+  <header class="navbar navbar-light navbar-expand border-bottom">
+    <div class="container-xl flex-wrap gap-2">
+      <span class="navbar-brand fw-bold mb-0">Поток</span>
+      <span class="text-muted small ms-auto">трекер задач и недельная загрузка</span>
+    </div>
+  </header>
+
+  <div class="page-wrapper">
+    <main class="container-xl py-3">
+
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+        <div>
+          <h1 class="page-title mb-0">План команды</h1>
+          <div class="text-muted small">Неделя с <span data-testid="current-week">—</span> (<span id="week-range">—</span>)</div>
+        </div>
+        <div class="btn-group" role="group" aria-label="Навигация по неделям">
+          <button type="button" class="btn" data-action="prev-week" data-testid="prev-week">← предыдущая</button>
+          <button type="button" class="btn" data-action="next-week" data-testid="next-week">следующая →</button>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap gap-2 mb-3" role="tablist" aria-label="Представления">
+        <button type="button" class="btn" data-action="view-board" data-testid="view-board">Доска</button>
+        <button type="button" class="btn" data-action="view-employees" data-testid="view-employees">По сотрудникам</button>
+      </div>
+
+      <div class="d-flex flex-wrap gap-2 mb-3" aria-label="Действия">
+        <button type="button" class="btn btn-primary" data-action="new-task" data-testid="new-task">Новая задача</button>
+        <button type="button" class="btn" data-action="propose-plan" data-testid="propose-plan">Предложить распределение</button>
+        <button type="button" class="btn" data-action="reset-demo" data-testid="reset-demo">Восстановить учебный пример</button>
+      </div>
+
+      <div id="notice" class="alert alert-warning d-none" role="status"></div>
+
+      <div class="text-muted small mb-1">Метрики недели — по всем задачам недели, поиск и фильтр их не пересчитывают.</div>
+      <div class="row row-cards mb-3">
+        <div class="col-6 col-lg-3"><div class="card"><div class="card-body"><div class="text-muted">Задач всего</div><div class="h2 mb-0" id="metric-tasks">0</div></div></div></div>
+        <div class="col-6 col-lg-3"><div class="card"><div class="card-body"><div class="text-muted">Активные часы</div><div class="h2 mb-0" id="metric-active">0</div></div></div></div>
+        <div class="col-6 col-lg-3"><div class="card"><div class="card-body"><div class="text-muted">Доступно часов</div><div class="h2 mb-0" id="metric-capacity">0</div></div></div></div>
+        <div class="col-6 col-lg-3"><div class="card"><div class="card-body"><div class="text-muted">Перегрузка, ч</div><div class="h2 mb-0" id="metric-overload">0</div></div></div></div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-12 col-md-5">
+          <label class="form-label mb-1" for="search">Поиск по названию и описанию</label>
+          <input id="search" data-testid="search" class="form-control" type="search" placeholder="например: отчёт">
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label mb-1" for="filter-assignee">Ответственный</label>
+          <select id="filter-assignee" data-testid="filter-assignee" class="form-select"></select>
+        </div>
+      </div>
+
+      <section id="board" data-testid="board" class="board">
+        <div class="board-col" data-testid="column-todo" data-status="todo">
+          <div class="board-col-title">Новая</div>
+          <div class="board-list"></div>
+        </div>
+        <div class="board-col" data-testid="column-doing" data-status="doing">
+          <div class="board-col-title">В работе</div>
+          <div class="board-list"></div>
+        </div>
+        <div class="board-col" data-testid="column-done" data-status="done">
+          <div class="board-col-title">Готово</div>
+          <div class="board-list"></div>
+        </div>
+      </section>
+
+      <section id="employees-view" data-testid="employees-view" class="row row-cards d-none"></section>
+
+      <form id="task-form" data-testid="task-form" class="card mt-3 d-none" novalidate>
+        <div class="card-header"><div class="card-title" id="form-heading">Новая задача</div></div>
+        <div class="card-body">
+          <div id="task-error" data-testid="task-error" class="alert alert-danger d-none" role="alert" aria-live="polite"></div>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="task-title">Название (1–140 символов)</label>
+              <input id="task-title" data-testid="task-title" class="form-control" type="text" maxlength="200">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="task-hours">Оценка, часов (0,5–168, шаг 0,5)</label>
+              <input id="task-hours" data-testid="task-hours" class="form-control" type="number" min="0.5" max="168" step="0.5">
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="task-description">Описание (до 1000 символов)</label>
+              <textarea id="task-description" data-testid="task-description" class="form-control" rows="3" maxlength="1200"></textarea>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label" for="task-assignee">Ответственный</label>
+              <select id="task-assignee" data-testid="task-assignee" class="form-select"></select>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label" for="task-status">Статус</label>
+              <select id="task-status" data-testid="task-status" class="form-select">
+                <option value="todo">Новая</option>
+                <option value="doing">В работе</option>
+                <option value="done">Готово</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label" for="task-week">Неделя (понедельник)</label>
+              <input id="task-week" data-testid="task-week" class="form-control" type="date">
+            </div>
+          </div>
+        </div>
+        <div class="card-footer d-flex flex-wrap gap-2 justify-content-md-end">
+          <button type="submit" class="btn btn-primary formbtn" data-testid="task-save">Сохранить задачу</button>
+          <button type="button" class="btn formbtn" data-action="form-cancel" data-testid="task-cancel">Отмена</button>
+        </div>
+      </form>
+
+      <div id="plan-modal" class="plan-overlay d-none" role="dialog" aria-modal="true" aria-labelledby="plan-title">
+        <div class="plan-box card">
+          <div class="card-header"><div class="card-title" id="plan-title">Предпросмотр распределения</div></div>
+          <div class="card-body" data-testid="plan-preview" id="plan-preview-body"></div>
+          <div class="card-footer d-flex flex-wrap gap-2 justify-content-md-end">
+            <button type="button" class="btn formbtn" data-action="plan-cancel" data-testid="plan-cancel">Отменить предпросмотр</button>
+            <button type="button" class="btn btn-primary formbtn" data-action="plan-apply" data-testid="plan-apply">Применить план</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

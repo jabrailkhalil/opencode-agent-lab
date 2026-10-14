@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "employees": [
+    {
+      "id": "anna",
+      "name": "Анна Смирнова",
+      "initials": "АС",
+      "role": "Разработка",
+      "color": "#5468d3",
+      "capacity": 24,
+      "capacities": {}
+    },
+    {
+      "id": "dmitry",
+      "name": "Дмитрий Волков",
+      "initials": "ДВ",
+      "role": "Разработка",
+      "color": "#007d87",
+      "capacity": 32,
+      "capacities": {}
+    },
+    {
+      "id": "maria",
+      "name": "Мария Орлова",
+      "initials": "МО",
+      "role": "Аналитика",
+      "color": "#a25a23",
+      "capacity": 24,
+      "capacities": {}
+    },
+    {
+      "id": "ilya",
+      "name": "Илья Соколов",
+      "initials": "ИС",
+      "role": "Тестирование",
+      "color": "#a34e88",
+      "capacity": 24,
+      "capacities": {}
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-101",
+      "title": "Обновить форму заявки",
+      "description": "Добавить выбор типа ресурса и понятные подсказки.",
+      "assignee": "anna",
+      "hours": 16,
+      "status": "doing",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-102",
+      "title": "Подключить витрину метрик",
+      "description": "Показать основные показатели на странице команды.",
+      "assignee": "anna",
+      "hours": 16,
+      "status": "todo",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-103",
+      "title": "Добавить фильтры в реестр",
+      "description": "Фильтрация по статусу и ответственному.",
+      "assignee": "dmitry",
+      "hours": 8,
+      "status": "doing",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-104",
+      "title": "Исправить выгрузку отчёта",
+      "description": "Сохранить порядок столбцов и заголовки.",
+      "assignee": "dmitry",
+      "hours": 6,
+      "status": "todo",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-105",
+      "title": "Описать правила согласования",
+      "description": "Зафиксировать переходы статусов и критерии приёмки.",
+      "assignee": "maria",
+      "hours": 8,
+      "status": "doing",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-106",
+      "title": "Проверить сценарии заявок",
+      "description": "Проверить создание, редактирование и завершение заявки.",
+      "assignee": "ilya",
+      "hours": 12,
+      "status": "todo",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-107",
+      "title": "Подготовить тестовые данные",
+      "description": "Набор вымышленных заявок для демонстрации.",
+      "assignee": "ilya",
+      "hours": 4,
+      "status": "done",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-108",
+      "title": "Согласовать поля заявки",
+      "description": "Названия, обязательность и ограничения полей.",
+      "assignee": "maria",
+      "hours": 6,
+      "status": "done",
+      "week": "2026-09-28"
+    },
+    {
+      "id": "TASK-109",
+      "title": "Добавить подсказки на доске",
+      "description": "Короткие пояснения статусов задач.",
+      "assignee": null,
+      "hours": 4,
+      "status": "todo",
+      "week": "2026-09-28"
+    }
+  ],
+  "nextId": 110
+}

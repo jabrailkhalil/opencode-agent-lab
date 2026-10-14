@@ -1,0 +1,37 @@
+{
+  "run": {
+    "id": "qwen-spec",
+    "prefix": "qspec",
+    "profile": "claude",
+    "model": "qwen/qwen3.8-flash",
+    "spec": true,
+    "port": 4110,
+    "proxyPort": 4190,
+    "appPort": 4220,
+    "budgetUsd": 3,
+    "workspace": "/home/demo/live-vtb-20261013-qwen-spec"
+  },
+  "requests": 268,
+  "costUsd": 0.29268201999999954,
+  "promptTokens": 8556572,
+  "completionTokens": 200858,
+  "cachedTokens": 8098560,
+  "budgetUsd": 3,
+  "budgetStopped": false,
+  "unknownCost": false,
+  "unconfirmedUsd": 0,
+  "costUpperBoundUsd": 0.29268201999999954,
+  "reservedUsd": 0,
+  "startedAt": "2026-10-13T18:42:12.480Z",
+  "finishedAt": "2026-10-13T19:39:11.808Z",
+  "elapsedMs": 3419328,
+  "machineStageMs": 3331853,
+  "humanActiveMs": null,
+  "operator": "automatic orchestration",
+  "domainTests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "visualTests": "NOT RUN",
+  "stages": 12
+}

@@ -1,0 +1,35 @@
+{
+  "run": {
+    "id": "sonnet-spec",
+    "prefix": "sdd",
+    "profile": "claude",
+    "model": "anthropic/claude-sonnet-5.5",
+    "spec": true,
+    "port": 4106,
+    "proxyPort": 4186,
+    "appPort": 4211,
+    "budgetUsd": 8,
+    "workspace": "/home/demo/live-vtb-20261011-sonnet-spec"
+  },
+  "requests": 172,
+  "costUsd": 4.4345464,
+  "promptTokens": 5133164,
+  "completionTokens": 238116,
+  "cachedTokens": 4491389,
+  "budgetUsd": 8,
+  "budgetStopped": false,
+  "unknownCost": false,
+  "reservedUsd": 0,
+  "startedAt": "2026-10-11T12:35:25.448Z",
+  "finishedAt": "2026-10-11T13:15:11.766Z",
+  "elapsedMs": 2386318,
+  "machineStageMs": 1952545,
+  "humanActiveMs": null,
+  "operator": "automatic orchestration",
+  "domainTests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "visualTests": "See visual-checks.json",
+  "stages": 20
+}

@@ -1,0 +1,158 @@
+{
+  "model": "qwen/qwen3.8-flash",
+  "publicExport": true,
+  "note": "Personal machine paths were removed; hashes describe this public export.",
+  "files": [
+    {
+      "path": "dist/app.js",
+      "bytes": 17401,
+      "sha256": "2503bfbe9754da0da7f7ea674f132aa7b2f38ef6c094fee001f03f45437f64e4"
+    },
+    {
+      "path": "dist/domain.js",
+      "bytes": 9758,
+      "sha256": "f10f3534be8b19331f44fe475c659606414e0bb3a64e6271c028abd5afce9ca3"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 8332,
+      "sha256": "a50d5aec256860bb5a10013efafa0ee43aba2a22c614032023295f8428ff3168"
+    },
+    {
+      "path": "dist/styles.css",
+      "bytes": 5475,
+      "sha256": "c26bbd2e9ca3963bf393c960feb484f2c7cb8646ec1ae74b12a14376a6cdc7a9"
+    },
+    {
+      "path": "dist/vendor/tabler/LICENSE",
+      "bytes": 1090,
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5"
+    },
+    {
+      "path": "dist/vendor/tabler/source.json",
+      "bytes": 373,
+      "sha256": "abc7455380f4ac2db11ac39c17de9303e7e3875c21a5669e448f4a31a64dded5"
+    },
+    {
+      "path": "dist/vendor/tabler/tabler.min.css",
+      "bytes": 635394,
+      "sha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403"
+    },
+    {
+      "path": "docs/BRIEF.md",
+      "bytes": 4927,
+      "sha256": "fd83c9f574452bccec30cea50a4039caad96f92ed519ce7f4a32b5dfa3cf80b2"
+    },
+    {
+      "path": "docs/DESIGN-REFERENCE.md",
+      "bytes": 1464,
+      "sha256": "fbf4039dd4169ca7e03063d5b3fcc9aaad40ad09a19503943c5cb2410ae4807d"
+    },
+    {
+      "path": "docs/INTERFACES.md",
+      "bytes": 3753,
+      "sha256": "5219cbb4a6a123b43959febdf7fc9cb1a6e7d057fff554df5c4572eedb6e6fed"
+    },
+    {
+      "path": "docs/OPENSPEC-WORKFLOW.md",
+      "bytes": 592,
+      "sha256": "5288d7911c9502e5827907b9e4f4cad0d2cd000b1144e8906232d86f833d90d9"
+    },
+    {
+      "path": "docs/seed-state.json",
+      "bytes": 3702,
+      "sha256": "5f7291f44c42a89a0de67f683994183261883c40fab49726300814abb31ec8ea"
+    },
+    {
+      "path": "openspec/changes/archive/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "openspec/changes/build-tracker/.openspec.yaml",
+      "bytes": 40,
+      "sha256": "3ae9e70fc0101b2a700cedadfa7b02caa5799fdfd1db033999469c527448c6b2"
+    },
+    {
+      "path": "openspec/changes/build-tracker/design.md",
+      "bytes": 6162,
+      "sha256": "462cb092723e3ee1dfeb3bda4ad7069171f91fa4cdbd0d34d849e67f91893a05"
+    },
+    {
+      "path": "openspec/changes/build-tracker/proposal.md",
+      "bytes": 2854,
+      "sha256": "8e3dc51382455c53759d902acefe0498989afb6d9cbfcb402d2bdb9ebfdd7952"
+    },
+    {
+      "path": "openspec/changes/build-tracker/specs/tracker/spec.md",
+      "bytes": 10326,
+      "sha256": "5b4a238ae3e5994d1f056ad835eb22e0d01008d6408d51e2ed69bb545ae4f192"
+    },
+    {
+      "path": "openspec/changes/build-tracker/tasks.md",
+      "bytes": 4840,
+      "sha256": "6829c49ad6b98710e393d8f89e88313bf0119cffd291b65a37dfcd6e246b1154"
+    },
+    {
+      "path": "openspec/config.yaml",
+      "bytes": 768,
+      "sha256": "2dc0b9247a85b2dcdd5d83cb8a35a0088fd3edc6c20d3148523a2d1e36e69e49"
+    },
+    {
+      "path": "openspec/specs/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/acceptance.txt",
+      "bytes": 2884,
+      "sha256": "13e0fc0a23673006bd63c3d72b2550e83b4333b87504f8565d14d20b8a12fa26"
+    },
+    {
+      "path": "reports/ANALYSIS.md",
+      "bytes": 4927,
+      "sha256": "a084215988f105389386627a4f58f41dd53a50467ca514822a611c2f99359f17"
+    },
+    {
+      "path": "reports/DESIGN-PLAN.md",
+      "bytes": 8292,
+      "sha256": "f1174a7af493cadd2fae91622de47894cac35a19084d1968a559c527460252c1"
+    },
+    {
+      "path": "reports/DESIGN-REVIEW.md",
+      "bytes": 8952,
+      "sha256": "94e88b1e36e189fa072e558a1ce7b43ddf78e97ed471c04660dcb8f66051917c"
+    },
+    {
+      "path": "reports/DEVELOPMENT.md",
+      "bytes": 8457,
+      "sha256": "9f55302e9f317b38194e593eab9b98d3cedcfad27dbe4452d77a5718cfde01b4"
+    },
+    {
+      "path": "reports/FINAL.md",
+      "bytes": 7190,
+      "sha256": "3db347a92ec7c198895527f2396be7bfd84dffc22af86f50c00667bd7735fa10"
+    },
+    {
+      "path": "reports/QA-RESULTS.md",
+      "bytes": 6346,
+      "sha256": "12f7bfcbc206dae7e8202712f37999b3c0081a525d0cc1827253fc2aafb6aefb"
+    },
+    {
+      "path": "tests/acceptance.test.mjs",
+      "bytes": 4284,
+      "sha256": "d7b3d8ac7c25eb1e23c239e7b5153bde7832fe84d854d646bdaf80eeed339396"
+    },
+    {
+      "path": "tests/agent-domain.test.mjs",
+      "bytes": 11293,
+      "sha256": "6c9a5bb84e689250e73b73d8fed3232bd487a64f940d75f7e36f81004c1d009e"
+    },
+    {
+      "path": "tests/agent-ui.test.mjs",
+      "bytes": 5598,
+      "sha256": "92fd4c051b95d8644d0c5debbebd74f7706afefcda85eff8682ec36b9a5dbffd"
+    }
+  ],
+  "screenshots": []
+}

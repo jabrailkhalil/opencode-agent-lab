@@ -1,0 +1,35 @@
+{
+  "run": {
+    "id": "sonnet-direct",
+    "prefix": "direct",
+    "profile": "claude",
+    "model": "anthropic/claude-sonnet-5.5",
+    "spec": false,
+    "port": 4107,
+    "proxyPort": 4187,
+    "appPort": 4212,
+    "budgetUsd": 6,
+    "workspace": "/home/demo/live-vtb-20261011-sonnet-direct"
+  },
+  "requests": 131,
+  "costUsd": 3.027588699999999,
+  "promptTokens": 2697063,
+  "completionTokens": 174123,
+  "cachedTokens": 2273397,
+  "budgetUsd": 6,
+  "budgetStopped": false,
+  "unknownCost": false,
+  "reservedUsd": 0,
+  "startedAt": "2026-10-11T12:38:28.539Z",
+  "finishedAt": "2026-10-11T13:11:47.651Z",
+  "elapsedMs": 1999112,
+  "machineStageMs": 1238203,
+  "humanActiveMs": null,
+  "operator": "automatic orchestration",
+  "domainTests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "visualTests": "See visual-checks.json",
+  "stages": 16
+}

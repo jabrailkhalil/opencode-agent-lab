@@ -1,0 +1,174 @@
+{
+  "checkedAt": "2026-10-03T14:08:53.211Z",
+  "elapsedMs": 20728,
+  "native": {
+    "exitCode": 1,
+    "passed": 0,
+    "failed": 0,
+    "tests": 0
+  },
+  "browser": {
+    "passed": 8,
+    "failed": 11,
+    "total": 19,
+    "results": [
+      {
+        "id": "QA-01",
+        "name": "Исходные задачи и расчёты",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-01.png",
+        "elapsedMs": 352
+      },
+      {
+        "id": "QA-02",
+        "name": "Адаптация 390/768/1100/1280 и четыре прогресса",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-02.png",
+        "elapsedMs": 395
+      },
+      {
+        "id": "QA-03a",
+        "name": "Trim-валидация и сохранение формы",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(await p.getByTestId('task-error').isVisible())\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-03a.png",
+        "elapsedMs": 276
+      },
+      {
+        "id": "QA-03-_1",
+        "name": "Недопустимая оценка -1",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(await p.getByTestId('task-error').isVisible())\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-03-_1.png",
+        "elapsedMs": 300
+      },
+      {
+        "id": "QA-03-0_7",
+        "name": "Недопустимая оценка 0.7",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(await p.getByTestId('task-error').isVisible())\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-03-0_7.png",
+        "elapsedMs": 227
+      },
+      {
+        "id": "QA-04",
+        "name": "Создание и сохранение после перезагрузки",
+        "status": "FAIL",
+        "error": "locator.selectOption: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-assignee')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"task-assignee\" class=\"form-select\" data-testid=\"task-assignee\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-04.png",
+        "elapsedMs": 2747
+      },
+      {
+        "id": "QA-05a",
+        "name": "Редактирование всех полей",
+        "status": "FAIL",
+        "error": "locator.selectOption: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-assignee')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"task-assignee\" class=\"form-select\" data-testid=\"task-assignee\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-05a.png",
+        "elapsedMs": 2723
+      },
+      {
+        "id": "QA-05b",
+        "name": "Завершение освобождает нагрузку",
+        "status": "FAIL",
+        "error": "locator.selectOption: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-assignee')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"task-assignee\" class=\"form-select\" data-testid=\"task-assignee\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-05b.png",
+        "elapsedMs": 2738
+      },
+      {
+        "id": "QA-05c",
+        "name": "Удаление задачи",
+        "status": "FAIL",
+        "error": "locator.selectOption: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-assignee')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"task-assignee\" class=\"form-select\" data-testid=\"task-assignee\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-05c.png",
+        "elapsedMs": 2720
+      },
+      {
+        "id": "QA-06",
+        "name": "Поиск + ответственный, метрики независимы",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-06.png",
+        "elapsedMs": 189
+      },
+      {
+        "id": "QA-07a",
+        "name": "Переходы между неделями",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-07a.png",
+        "elapsedMs": 204
+      },
+      {
+        "id": "QA-07b",
+        "name": "Недельная доступность независима",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-07b.png",
+        "elapsedMs": 339
+      },
+      {
+        "id": "QA-08a",
+        "name": "Оба представления и общие данные",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-08a.png",
+        "elapsedMs": 229
+      },
+      {
+        "id": "QA-08b",
+        "name": "Drag-and-drop меняет и сохраняет статус",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(await p.getByTestId('column-done').getByTestId('task-TASK-101').isVisible())\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-08b.png",
+        "elapsedMs": 218
+      },
+      {
+        "id": "QA-09",
+        "name": "Предпросмотр и отмена без изменения данных",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-09.png",
+        "elapsedMs": 223
+      },
+      {
+        "id": "QA-10",
+        "name": "Применение плана, сохранение часов и выполненных задач",
+        "status": "PASS",
+        "screenshot": "screenshots/acceptance-1791036512738/QA-10.png",
+        "elapsedMs": 214
+      },
+      {
+        "id": "QA-11",
+        "name": "Нулевая доступность и невозможные назначения",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(after.tasks.filter(t=>t.status!=='done').every(t=>t.assignee===null))\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-11.png",
+        "elapsedMs": 678
+      },
+      {
+        "id": "QA-12a",
+        "name": "Восстановление примера",
+        "status": "FAIL",
+        "error": "locator.selectOption: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-assignee')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"task-assignee\" class=\"form-select\" data-testid=\"task-assignee\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-12a.png",
+        "elapsedMs": 2729
+      },
+      {
+        "id": "QA-12b",
+        "name": "Повреждённое сохранение не ломает загрузку",
+        "status": "FAIL",
+        "error": "locator.selectOption: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('task-assignee')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"task-assignee\" class=\"form-select\" data-testid=\"task-assignee\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+        "pageErrors": [],
+        "screenshot": "screenshots/acceptance-1791036512738/QA-12b.png",
+        "elapsedMs": 2717
+      }
+    ]
+  },
+  "passed": false,
+  "screenshots": "screenshots/acceptance-1791036512738"
+}
