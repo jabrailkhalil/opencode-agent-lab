@@ -47,6 +47,7 @@ export async function startAssist(profile){
   return response.json();
  };
  const current=()=>nextAssignment(read('data/workshop.json'),read('data/checkpoint-console-state.json'),profile);
+ const control=async(route,body)=>{const response=await fetch('http://127.0.0.1:4201/api/replay/'+route,{method:body?'POST':'GET',headers:{'content-type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(12000)});const value=await response.json();if(!response.ok)throw Error(value.error||'Нет связи с пультом');return value;};
  // Download once at startup, locally from the running version, and pin its
  // exact asset URL. No network dependency is introduced by this adapter.
  const page=await fetch(base()+'/').then(r=>r.text());
@@ -60,28 +61,31 @@ export async function startAssist(profile){
     if(req.headers.origin&&req.headers.origin!==origin&&req.headers.origin!=='http://127.0.0.1:4201'){json(403,{error:'Local demo only'});return;}
     if(url.pathname==='/__demo/health'){json(200,{healthy:true,profile,recording:recorded()});return;}
     if(url.pathname==='/__demo/next'){
-     const statuses=await engine('/session/status');
-     json(200,{...current(),profile,workspace:plan().workspace,recording:recorded(),busy:Object.values(statuses).some(s=>s.type&&s.type!=='idle')});return;
+     const [statuses,shared]=await Promise.all([engine('/session/status'),control('status?profile='+profile)]);
+     json(200,{...current(),profile,workspace:plan().workspace,epoch:shared.current?.epoch,sessionId:shared.current?.sessionId,intent:shared.intent,resetting:shared.resetting,resetError:shared.error,recording:recorded(),busy:Object.values(statuses).some(s=>s.type&&s.type!=='idle')});return;
     }
+    if(url.pathname==='/__demo/prepare'&&req.method==='POST'){let raw='';for await(const c of req){raw+=c;if(raw.length>4096)throw Error('Слишком большой запрос');}json(200,await control('prepare',{...JSON.parse(raw),profile}));return;}
     if(url.pathname==='/__demo/open'){
      if(!recorded())throw new Error('Автоподстановка доступна только в режиме записи.');
-     const statuses=await engine('/session/status');
-     if(Object.values(statuses).some(s=>s.type&&s.type!=='idle'))throw new Error('Дождись завершения ответа в OpenCode.');
-     const list=await engine('/session?directory='+encodeURIComponent(plan().workspace)+'&limit=40');
-     const norm=s=>path.resolve(s||'.').toLowerCase();
-     let session=url.searchParams.get('fresh')==='1'?null:list.find(s=>!s.time?.archived&&norm(s.directory)===norm(plan().workspace));
-     if(!session)session=await engine('/session',{title:current().label||'Демонстрация агентов'});
-     res.writeHead(302,{Location:'/server/'+Buffer.from(origin).toString('base64url')+'/session/'+encodeURIComponent(session.id),'Cache-Control':'no-store'});res.end();return;
+     const bound=await control('session',{profile});
+     res.writeHead(302,{Location:'/server/'+Buffer.from(origin).toString('base64url')+'/session/'+encodeURIComponent(bound.sessionId),'Cache-Control':'no-store'});res.end();return;
     }
     if(['/__demo/assist.js','/__demo/assist.css'].includes(url.pathname)){
-     const suffix=url.pathname.endsWith('.js')?'js':'css';res.writeHead(200,{'Content-Type':suffix==='js'?'text/javascript; charset=utf-8':'text/css; charset=utf-8','Cache-Control':'no-store'});res.end(fs.readFileSync(path.join(root,'ui/opencode-assist.'+suffix)));return;
+     const suffix=url.pathname.endsWith('.js')?'js':'css';res.writeHead(200,{'Content-Type':suffix==='js'?'text/javascript; charset=utf-8':'text/css; charset=utf-8','Cache-Control':'no-store'});res.end(fs.readFileSync(path.join(root,'ui',suffix==='js'?'opencode-assist-client.js':'opencode-assist.css')));return;
     }
     json(404,{error:'Unknown assistant route'});return;
    }
    if(url.pathname===asset){res.writeHead(200,{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store'});res.end(patched);return;}
+   let forwardedBody,claimed;
+   const submission=url.pathname.match(/^\/(?:api\/)?session\/(ses_[a-zA-Z0-9]+)\/(?:prompt_async|prompt|message)$/);
+   if(submission&&req.method==='POST'&&recorded()){
+    const chunks=[];let bytes=0;for await(const chunk of req){bytes+=chunk.length;if(bytes>4*1024*1024)throw Error('Слишком большой запрос');chunks.push(chunk);}forwardedBody=Buffer.concat(chunks);
+    try{claimed=await control('claim',{profile,sessionId:submission[1],request:JSON.parse(forwardedBody.toString())});}catch(error){json(409,{error:error.message});return;}
+   }
    const headers={...req.headers,host:new URL(base()).host,'accept-encoding':'identity'};
    delete headers['if-none-match'];delete headers['if-modified-since'];
    const upstream=http.request(base()+req.url,{method:req.method,headers},response=>{
+    if(claimed&&response.statusCode>=400)control('failed',{profile,id:claimed.id}).catch(()=>{});
     const html=response.headers['content-type']?.includes('text/html');
     const out={...response.headers};delete out['content-length'];delete out['content-encoding'];
     if(html){
@@ -92,8 +96,8 @@ export async function startAssist(profile){
      });
     }else{res.writeHead(response.statusCode,out);response.pipe(res);}
    });
-   upstream.on('error',()=>{if(!res.headersSent)json(502,{error:'OpenCode недоступен'});else res.destroy();});
-   res.on('close',()=>upstream.destroy());req.pipe(upstream);
+   upstream.on('error',()=>{if(claimed)control('failed',{profile,id:claimed.id}).catch(()=>{});if(!res.headersSent)json(502,{error:'OpenCode недоступен'});else res.destroy();});
+   res.on('close',()=>upstream.destroy());if(forwardedBody)upstream.end(forwardedBody);else req.pipe(upstream);
   }catch(error){json(503,{error:error.message});}
  });
  server.on('upgrade',(req,socket,head)=>{

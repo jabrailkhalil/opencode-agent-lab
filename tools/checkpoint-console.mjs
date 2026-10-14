@@ -7,6 +7,7 @@ import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {savedOpenCodeReply} from './saved-opencode-reply.mjs';
 import {nextPrompt} from '../ui/demo-flow.js';
+import {createReplayControl} from './replay-control.mjs';
 
 const root=path.resolve(import.meta.dirname,'..');
 const port=Number(process.env.DEMO_CONSOLE_PORT||4201);
@@ -73,7 +74,17 @@ async function apply(profile,id,options={}){
  restoreQueue=task.catch(()=>{});
  try{return await task;}finally{pendingProfiles.delete(profile);}
 }
+function validateCheckpoint(profile,id){
+ const point=catalog.find(p=>p.id===id&&(p.group===profile||p.group==='errors'));
+ if(!point)throw new Error('Нет такого чекпоинта для этой команды');
+ const source=path.join(root,'checkpoints',id),manifest=read(path.join(source,'manifest.json'));
+ for(const [folder,entries]of [['code',manifest.files],['screenshots',manifest.screenshots||[]]])for(const entry of entries){const bytes=fs.readFileSync(guarded(path.join(source,folder),entry.path));if(bytes.length!==entry.bytes||sha(bytes)!==entry.sha256)throw new Error('Повреждён чекпоинт: '+entry.path);}
+ return manifest;
+}
 async function applyNow(profile,id,options={}){
+ if(replayControl.gate.resetting&&!options.internalReset)throw new Error('Идёт общий сброс.');
+ const previous=state()[profile];
+ if(options.expectedVersion&&previous?.version!==options.expectedVersion)throw new Error('Этот переход уже выполнен или этап изменился.');
  if(busy)throw new Error('Уже выполняется переход. Дождись завершения.');
  busy=true;
  try{
@@ -118,7 +129,7 @@ async function applyNow(profile,id,options={}){
    throw error;
   }
   for(const entry of selected.filter(f=>f.path!=='docs/SPEC.md'))if(sha(fs.readFileSync(guarded(workspace,entry.path)))!==entry.sha256)throw new Error('Проверка восстановленных файлов не прошла: '+entry.path);
-  const record={checkpoint:id,at:new Date().toISOString(),version:stamp,backupCheckpoint:label,verifiedFiles:selected.length,apiCalls:0};
+  const record={checkpoint:id,at:new Date().toISOString(),version:stamp,epoch:options.epoch||previous?.epoch||crypto.randomUUID(),sessionId:options.sessionId||previous?.sessionId||null,backupCheckpoint:label,verifiedFiles:selected.length,apiCalls:0};
   const next=nextPrompt(profile,id)?.role||'завершено';
   fs.writeFileSync(path.join(workspace,'STAGE-TASK.md'),'# Продолжение после '+id+'\n\nЗагружена сохранённая версия. Следующая роль: '+next+'. Перед новым запросом прочитай документы и актуальные отчёты. Для просмотра и перехода вызов модели не нужен.\n\nТекущий продукт: http://127.0.0.1:'+plan.appPort+'/. Старые сообщения и порты в отчётах относятся к записанному прогону.\n');
   fs.writeFileSync(path.join(workspace,'CHECKPOINT-CURRENT.json'),JSON.stringify(record,null,2)+'\n');
@@ -129,26 +140,21 @@ async function applyNow(profile,id,options={}){
  }finally{busy=false;}
 }
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml'};
+const replayControl=createReplayControl({root,state,stateFile,target,catalog,apply,validate:validateCheckpoint});
 const server=http.createServer(async(req,res)=>{
  const json=(status,value)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));};
  try{
   const freshTime=fs.statSync(catalogFile).mtimeMs;if(freshTime!==catalogTime){catalog=read(catalogFile);catalogTime=freshTime;}
   const url=new URL(req.url,'http://127.0.0.1:'+port);
-  if(await savedOpenCodeReply(req,res,url,{root,catalog,state,apply,pointData}))return;
+  if(await replayControl.handle(req,res,url))return;
+  if(await savedOpenCodeReply(req,res,url,{root,catalog,state,apply,pointData,gate:replayControl.gate}))return;
   if(url.pathname==='/api/cursor'&&req.method==='GET'){
-   const setup=read(setupFile);json(200,{current:state(),modes:Object.fromEntries(setup.profiles.map(p=>[p.profile,p.openCodeMode||'live']))});return;
+   const setup=read(setupFile);json(200,{current:state(),resetting:replayControl.gate.resetting,error:replayControl.gate.resetError,modes:Object.fromEntries(setup.profiles.map(p=>[p.profile,p.openCodeMode||'live']))});return;
   }
   if(url.pathname==='/api/opencode-link'&&req.method==='GET'){
-   const {plan,workspace}=target(url.searchParams.get('profile')||'claude'),base='http://127.0.0.1:'+plan.agentPort;
-   let href=base+'/';
-   try{
-    const response=await fetch(base+'/session?directory='+encodeURIComponent(workspace)+'&limit=40',{signal:AbortSignal.timeout(2500)});
-    if(response.ok){
-     const sessions=await response.json(),session=sessions.find(s=>!s.time?.archived&&path.resolve(s.directory||'').toLowerCase()===workspace.toLowerCase());
-     if(session)href=base+'/server/'+Buffer.from(base).toString('base64url')+'/session/'+encodeURIComponent(session.id);
-    }
-   }catch{}
-   json(200,{href});return;
+   const profile=url.searchParams.get('profile')||'claude';target(profile);
+   const bound=await replayControl.session(profile);
+   json(200,{href:'http://127.0.0.1:'+(profile==='claude'?4216:4217)+'/__demo/open',sessionId:bound.sessionId});return;
   }
   if(url.pathname==='/api/state'&&req.method==='GET'){json(200,view(url.searchParams.get('profile')||'claude',url.searchParams.get('mode')||'base'));return;}
   if(url.pathname==='/api/opencode-mode'&&req.method==='POST'){json(200,{mode:'recording',apiCalls:0});return;}
@@ -156,7 +162,7 @@ const server=http.createServer(async(req,res)=>{
    if(req.headers.origin&&req.headers.origin!=='http://127.0.0.1:'+port)throw new Error('Запрос не из пульта');
    if(!req.headers['content-type']?.startsWith('application/json'))throw new Error('Нужен JSON');
    let body='';for await(const chunk of req){body+=chunk;if(body.length>2048)throw new Error('Слишком большой запрос');}
-   const {profile,checkpoint}=JSON.parse(body);json(200,await apply(profile,checkpoint));return;
+   const {profile,checkpoint}=JSON.parse(body);const reset=await replayControl.reset({profiles:[{profile,checkpoint}]});json(200,reset.records[profile]);return;
   }
   if(url.pathname==='/api/validate-spec'&&req.method==='POST'){
    if(req.headers.origin&&req.headers.origin!=='http://127.0.0.1:'+port)throw new Error('Запрос не из пульта');

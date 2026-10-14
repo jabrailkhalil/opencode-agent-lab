@@ -18,6 +18,8 @@
 
 **Перенос на другой ноутбук:** [инструкция установки](docs/LAPTOP-SETUP.md). **Передать другому агенту:** [AGENTS.md](AGENTS.md) и [готовый текст задачи](docs/AGENT-HANDOFF.md).
 
+**MacBook:** [установка и проверка на macOS](docs/MACBOOK-SETUP.md), `INSTALL-MAC.command` → `START-MAC.command`. Зависимости для Apple Silicon/Intel устанавливаются на самом Mac; Windows-папки переносить не нужно.
+
 ![Qwen after applying the shared UI contract](docs/assets/qwen-spec.png)
 
 ## Быстрый запуск
@@ -41,6 +43,8 @@ cd opencode-agent-lab
 4. два чата OpenCode рядом.
 
 Первый запуск загружает OpenCode из npm и может занять несколько минут. Последующие запуски используют локальную установку.
+
+**Перед записью:** в общем окне OpenCode нажмите **«Начать оба с нуля»**, дождитесь **0 / 11** и двух пустых чатов. Затем **«Вставить оба промпта» → «Отправить оба»**. Подстановка сама ничего не отправляет; подготовленное задание разрешает ровно один переход. Для одной стороны выберите «Только слева/справа». Повторный запуск уже работающего стенда сохраняет прогресс, а сброс выполняется только явной кнопкой. Подробности: [CLICK-GUIDE.md](docs/CLICK-GUIDE.md).
 
 Материалы: [памятка по кликам](docs/CLICK-GUIDE.md), [PDF](docs/pdf/README.md), [все эксперименты](docs/EXPERIMENTS.md), [чекпоинты](docs/ARCHITECTURE.md), [новый API-прогон](docs/LIVE-API.md).
 
@@ -98,7 +102,7 @@ npm run api:project -- qwen-spec
 
 ## English
 
-Workshop handout with five recorded Task Tracker experiments, verified checkpoints and reusable OpenCode configurations. The tested launcher targets Windows 10/11. Use INSTALL-WINDOWS.cmd once, then START-WINDOWS.cmd. API keys are unnecessary for replay. Laptop setup and agent handoff instructions are linked above.
+Workshop handout with five recorded Task Tracker experiments, verified checkpoints and reusable OpenCode configurations. Windows launchers and macOS command scripts are included, with CI for Windows, macOS ARM64 and macOS Intel. API keys are unnecessary for replay. Use the explicit shared reset before recording; reopening a running lab preserves progress. Laptop setup and agent handoff instructions are linked above.
 
 MIT. Third-party licenses are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 

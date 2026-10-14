@@ -36,10 +36,10 @@ export async function savedOpenCodeReply(req,res,url,context){
   if(!marker){
    output=/title|заголовок|название сессии/i.test(system)?'Демо: сохранённый этап':'Сохранённый прогон. Выбери Analyst, Designer, Developer или Tester.';
   }else{
-   const role=marker[1],fingerprint=crypto.createHash('sha256').update(context.root+JSON.stringify(request.messages)+request.model).digest('hex');
+   const role=marker[1],epoch=context.state()[profile]?.epoch,fingerprint=crypto.createHash('sha256').update(context.root+epoch+JSON.stringify(request.messages)+request.model).digest('hex');
    if(pending.has(fingerprint))await pending.get(fingerprint);
    const current=context.state()[profile],cached=replies.get(fingerprint);
-   if(cached&&cached.version===current?.version&&cached.checkpoint===current?.checkpoint){output=cached.output;checkpoint=cached.checkpoint;}
+   if(cached){output=cached.output;checkpoint=cached.checkpoint;}
    else{
     const next=expectedRecordedCheckpoint(context.catalog,profile,current?.checkpoint);
     const lastUser=(request.messages||[]).filter(m=>m.role==='user').at(-1);
@@ -48,17 +48,20 @@ export async function savedOpenCodeReply(req,res,url,context){
     // known tasks internally so resending an earlier task cannot skip a step.
     const taskSteps=recordedPromptSteps(profile,task.replace(/\s*\[Шаг:\s*[a-z0-9-]+\]\s*$/,''));
     if(!next)output='Прогон завершён. Итоговые материалы доступны в пульте. Для повторения нажми «Начать с нуля». Для новой задачи нужен режим живого API.';
-    else if(next.role!==role||(requested&&requested!==next.id)||(taskSteps.length&&!taskSteps.includes(next.id)))output='Этап не изменён. Следующий шаг: '+next.id+' — '+(roleLabels[next.role]||next.role)+'. Выбери эту роль и отправь промпт этого шага из сценария.';
+    else if(next.role!==role||(requested&&requested!==next.id)||!taskSteps.includes(next.id))throw new Error('Этап не изменён. Выберите текущий чат и вставьте точный промпт следующего шага.');
     else{
      let release;pending.set(fingerprint,new Promise(resolve=>{release=resolve;}));
+     let intent;
      try{
+      intent=context.gate.authorize(profile,role,task);
       checkpoint=next.id;
-      await context.apply(profile,next.id,{recordedReply:true});
+      await context.apply(profile,next.id,{recordedReply:true,expectedVersion:intent.version});
       const point=context.pointData(next,profile);
       output=point.output||point.description||'Этап восстановлен.';
       if(point.kind==='prepared-error')output='Подготовленная сцена · '+point.id+'\n\n'+output;
       replies.set(fingerprint,{output,checkpoint,version:context.state()[profile]?.version});
-     }finally{pending.delete(fingerprint);release();}
+      context.gate.finish(profile,intent.id);while(replies.size>1000)replies.delete(replies.keys().next().value);
+     }catch(error){if(intent)context.gate.finish(profile,intent.id,true);throw error;}finally{pending.delete(fingerprint);release();}
     }
    }
   }

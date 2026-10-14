@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {bindRolePaths} from './role-path-permissions.mjs';
+import {openCodeExecutable} from './runtime-platform.mjs';
+import crypto from 'node:crypto';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const runtime=path.join(root,'.runtime');
@@ -35,11 +37,11 @@ for(const plan of plans){
   fs.writeFileSync(path.join(workspace,'opencode.json'),JSON.stringify(original,null,2)+'\n');
   fs.mkdirSync(path.join(workspace,'artifacts'),{recursive:true});
 }
-const executable=process.platform==='win32'?path.join(root,'node_modules/opencode-ai/bin/opencode.exe'):path.join(root,'node_modules/opencode-ai/bin/opencode');
-if(!fs.existsSync(executable))throw new Error('OpenCode is not installed. Run npm install first.');
+const executable=openCodeExecutable(root);
 const setup={createdAt:new Date().toISOString(),nodeExecutable:process.execPath,executable,profiles:plans.map(p=>({...p,workspace:path.join(workspaces,p.profile),openCodeMode:'recording'}))};
 fs.writeFileSync(path.join(root,'data/live-preparation.json'),JSON.stringify(setup,null,2)+'\n');
-fs.writeFileSync(path.join(root,'data/checkpoint-console-state.json'),JSON.stringify({claude:{checkpoint:plans[0].source,version:'reset'},qwen:{checkpoint:plans[1].source,version:'reset'}},null,2)+'\n');
+const epoch=crypto.randomUUID();
+fs.writeFileSync(path.join(root,'data/checkpoint-console-state.json'),JSON.stringify({claude:{checkpoint:plans[0].source,version:epoch,epoch,sessionId:null},qwen:{checkpoint:plans[1].source,version:epoch,epoch,sessionId:null}},null,2)+'\n');
 fs.writeFileSync(path.join(root,'data/opencode-recording-events.jsonl'),'');
 console.log('Reset complete: '+plans.map(p=>p.source).join(' / '));
 

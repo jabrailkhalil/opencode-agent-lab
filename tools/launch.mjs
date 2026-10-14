@@ -5,8 +5,21 @@ import {spawn,spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),open=process.argv.includes('--open');
 const ports=[4096,4097,4191,4192,4201,4216,4217];
+const urls=['http://127.0.0.1:4201/welcome','http://127.0.0.1:4201/?profile=claude#intro','http://127.0.0.1:4201/?profile=qwen#intro','http://127.0.0.1:4201/parallel'];
+function openTabs(){
+ if(!open)return;
+ if(process.platform==='win32')spawn('powershell.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',path.join(root,'tools/open-demo-tabs.ps1'),'-Urls',urls.join(',')],{windowsHide:true,detached:true,stdio:'ignore'}).unref();
+ else if(process.platform==='darwin')spawn('open',urls,{detached:true,stdio:'ignore'}).unref();
+ else for(const url of urls)spawn('xdg-open',[url],{detached:true,stdio:'ignore'}).unref();
+}
 const alive=port=>new Promise(resolve=>{const s=net.connect(port,'127.0.0.1');s.once('connect',()=>{s.destroy();resolve(true)});s.once('error',()=>resolve(false));setTimeout(()=>{s.destroy();resolve(false)},500)});
-if((await Promise.all(ports.map(alive))).some(Boolean))throw new Error('One of ports '+ports.join(', ')+' is busy. Close the previous lab first.');
+const occupied=await Promise.all(ports.map(alive));
+if(occupied.some(Boolean)){
+ let own=false;try{const h=await fetch('http://127.0.0.1:4201/health',{signal:AbortSignal.timeout(2000)}).then(r=>r.json());own=h.app==='opencode-agent-lab'&&path.resolve(h.root)===root;}catch{}
+ if(own&&occupied.every(Boolean)){openTabs();console.log('Already running. Progress preserved. For a new recording use «Начать оба с нуля» in /parallel.\n'+urls.join('\n'));process.exit(0);}
+ throw new Error(own?'The previous launch is incomplete. Run npm stop, then npm start.':'A required port is occupied by another process. Use npm run doctor; do not stop unrelated services.');
+}
+try{
 const reset=spawnSync(process.execPath,[path.join(root,'tools/reset.mjs')],{cwd:root,stdio:'inherit'});
 if(reset.status!==0)throw new Error('Could not prepare clean workspaces.');
 const setup=JSON.parse(fs.readFileSync(path.join(root,'data/live-preparation.json'),'utf8'));
@@ -40,11 +53,8 @@ persist();
 const deadline=Date.now()+15000;
 while(Date.now()<deadline){if((await Promise.all(ports.map(alive))).every(Boolean))break;await new Promise(r=>setTimeout(r,300));}
 if(!(await Promise.all(ports.map(alive))).every(Boolean))throw new Error('Services did not start. See .runtime/logs.');
-const urls=['http://127.0.0.1:4201/welcome','http://127.0.0.1:4201/?profile=claude#intro','http://127.0.0.1:4201/?profile=qwen#intro','http://127.0.0.1:4201/parallel'];
-if(open){
- if(process.platform==='win32')spawn('powershell.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',path.join(root,'tools/open-demo-tabs.ps1'),'-Urls',urls.join(',')],{windowsHide:true,detached:true,stdio:'ignore'}).unref();
- else for(const url of urls)spawn(process.platform==='darwin'?'open':'xdg-open',[url],{detached:true,stdio:'ignore'}).unref();
-}
+openTabs();
 console.log(urls.join('\n'));
+}catch(error){spawnSync(process.execPath,[path.join(root,'tools/stop.mjs')],{cwd:root,stdio:'inherit'});throw error;}
 
 
