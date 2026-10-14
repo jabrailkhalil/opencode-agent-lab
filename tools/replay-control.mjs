@@ -4,11 +4,11 @@ import path from 'node:path';
 import {ReplayGate} from './replay-gate.mjs';
 import {nextAssignment} from './opencode-demo-assist.mjs';
 
-export function createReplayControl({root,state,stateFile,target,catalog,apply,validate}){
+export function createReplayControl({root,state,stateFile,target,catalog,apply,validate,engine:engineOverride}){
  const workshop=()=>JSON.parse(fs.readFileSync(path.join(root,'data/workshop.json'),'utf8'));
  const gate=new ReplayGate(p=>state()[p],p=>nextAssignment(workshop(),state(),p).next);
  const creating=new Map(),resets=new Map();
- async function engine(profile,route,body){const {plan,workspace}=target(profile);const r=await fetch('http://127.0.0.1:'+plan.agentPort+route,{method:body?'POST':'GET',headers:{'content-type':'application/json','x-opencode-directory':encodeURIComponent(workspace)},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('OpenCode: '+r.status);return r.json();}
+ const engine=engineOverride||async function(profile,route,body){const {plan,workspace}=target(profile);const r=await fetch('http://127.0.0.1:'+plan.agentPort+route,{method:body?'POST':'GET',headers:{'content-type':'application/json','x-opencode-directory':encodeURIComponent(workspace)},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('OpenCode: '+r.status);return r.json();};
  async function isIdle(profiles){for(const p of profiles){const statuses=await engine(p,'/session/status');if(gate.active(p)||Object.values(statuses).some(s=>s.type&&s.type!=='idle'))throw Error('Агент отвечает. Дождитесь завершения, затем начните новый прогон.');}}
  const write=records=>fs.writeFileSync(stateFile,JSON.stringify(records,null,2)+'\n');
  async function session(profile){
@@ -24,15 +24,17 @@ export function createReplayControl({root,state,stateFile,target,catalog,apply,v
   const plans=body.profiles?.length?body.profiles.map(p=>({profile:p.profile,checkpoint:p.checkpoint})):['claude','qwen'].map(profile=>{const w=workshop(),r=w.runs.find(r=>r.profile===profile&&r.stages.some(s=>s.id===state()[profile]?.checkpoint))||w.runs.find(r=>r.id===w.presentation[profile==='claude'?'leftRun':'rightRun']);return {profile,checkpoint:r.stages[0].id};});
   if(!plans.length||plans.length>2||new Set(plans.map(p=>p.profile)).size!==plans.length)throw Error('Недопустимые ветки для сброса.');
   for(const p of plans){target(p.profile);validate(p.profile,p.checkpoint);}
+  if(plans.some(p=>gate.active(p.profile)))throw Error('Задание уже отправлено. Дождитесь ответа, затем начните новый прогон.');
   gate.resetting=true;
   const task=(async()=>{
+   let mutationStarted=false;
    try{
     await isIdle(plans.map(p=>p.profile));const epoch=crypto.randomUUID(),fresh=[];
     for(const p of plans){const label=workshop().runs.find(r=>r.stages.some(s=>s.id===p.checkpoint))?.label;fresh.push({...p,session:await engine(p.profile,'/session',{title:(label||p.profile)+' · новый прогон'})});}
     const records={};
-    for(const p of fresh){records[p.profile]=await apply(p.profile,p.checkpoint,{internalReset:true,epoch,sessionId:p.session.id});gate.clear(p.profile);}
+    for(const p of fresh){mutationStarted=true;records[p.profile]=await apply(p.profile,p.checkpoint,{internalReset:true,epoch,sessionId:p.session.id});gate.clear(p.profile);}
     gate.resetError='';return {records,epoch,apiCalls:0};
-   }catch(error){gate.resetError='Сброс не завершён: '+error.message+' Повторите «Новый прогон». До этого отправка заблокирована.';throw error;}
+   }catch(error){if(mutationStarted)gate.resetError='Сброс не завершён: '+error.message+' Повторите «Начать оба с нуля». До этого отправка заблокирована.';throw error;}
    finally{gate.resetting=false;}
   })();resets.set(requestId,task);while(resets.size>20)resets.delete(resets.keys().next().value);return task;
  }
