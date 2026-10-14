@@ -1,6 +1,7 @@
 node_modules/
 .runtime/
 artifacts/
+output/
 data/live-preparation.json
 data/checkpoint-console-state.json
 data/opencode-recording-events.jsonl

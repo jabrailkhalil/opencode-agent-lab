@@ -17,7 +17,7 @@ if(fs.existsSync(pkg)){
  const version=spawnSync(executable,['--version'],{encoding:'utf8',windowsHide:true,timeout:10000});
  add('Pinned OpenCode',version.status===0&&version.stdout.trim()==='1.18.34',version.status===0?version.stdout.trim():'Run INSTALL-WINDOWS.cmd');
 }else add('Pinned OpenCode',false,'Run INSTALL-WINDOWS.cmd');
-add('Replay input files',['data/workshop.json','data/checkpoints.json','docs/pdf/OpenCode-Step-by-Step-2026-10-07.pdf'].every(p=>fs.existsSync(path.join(root,p))),'recordings and PDF');
+add('Replay input files',['data/workshop.json','data/checkpoints.json','docs/pdf/OpenCode-Guide-with-Workflows.pdf'].every(p=>fs.existsSync(path.join(root,p))),'recordings and PDF');
 const used=[];
 for(const port of [4096,4097,4191,4192,4201,4216,4217]){
  const open=await new Promise(resolve=>{const socket=net.connect(port,'127.0.0.1');const done=v=>{socket.destroy();resolve(v)};socket.setTimeout(500,()=>done(false));socket.once('connect',()=>done(true));socket.once('error',()=>done(false));});

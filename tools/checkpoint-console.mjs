@@ -171,8 +171,8 @@ const server=http.createServer(async(req,res)=>{
   if(url.pathname==='/api/workshop'){json(200,read(path.join(root,'data/workshop.json')));return;}
   if(url.pathname==='/api/legacy-qwen'){json(200,read(path.join(root,'data/legacy-qwen.json')));return;}
   if(url.pathname==='/guide.pdf'){
-   const bytes=fs.readFileSync(path.join(root,'docs/pdf/OpenCode-Step-by-Step-2026-10-07.pdf'));
-   res.writeHead(200,{'Content-Type':'application/pdf','Content-Disposition':'inline; filename="OpenCode-Step-by-Step.pdf"','Cache-Control':'no-store'});res.end(bytes);return;
+   const bytes=fs.readFileSync(path.join(root,'docs/pdf/OpenCode-Guide-with-Workflows.pdf'));
+   res.writeHead(200,{'Content-Type':'application/pdf','Content-Disposition':'inline; filename="OpenCode-Guide-with-Workflows.pdf"','Cache-Control':'no-store'});res.end(bytes);return;
   }
   let file,body;
   const product=url.pathname.match(/^\/product\/(claude|qwen)\/(.*)$/);
@@ -205,6 +205,8 @@ const server=http.createServer(async(req,res)=>{
    const files={'/comparison':'comparison.html','/comparison.js':'comparison.js','/comparison.css':'comparison.css','/demo-clock.js':'demo-clock.js','/workshop-extras.js':'workshop-extras.js','/':'workshop.html','/archive':'checkpoint-console.html','/workshop.js':'workshop.js','/workshop.css':'workshop.css','/workshop-flow.js':'workshop-flow.js','/demo-flow.js':'demo-flow.js','/checkpoint-console.js':'checkpoint-console.js','/checkpoint-console.css':'checkpoint-console.css','/checkpoint-results.js':'checkpoint-results.js','/checkpoint-markdown.js':'checkpoint-markdown.js'};
    Object.assign(files,{'/run-metrics.js':'run-metrics.js','/agent-flow-spec.svg':'agent-flow-spec.svg','/agent-flow-direct.svg':'agent-flow-direct.svg','/spec-ui-contract.md':'spec-ui-contract.md','/material-routes.js':'material-routes.js','/comparison-sections.js':'comparison-sections.js','/parallel':'parallel.html','/parallel.js':'parallel.js','/parallel.css':'parallel.css','/legacy-qwen.js':'legacy-qwen.js','/legacy-qwen.css':'legacy-qwen.css'});
    files['/welcome']='welcome.html';
+   files['/agent-workflows.js']='agent-workflows.js';
+   for(const id of ['sonnet-spec','sonnet-direct','qwen-spec','qwen-direct'])files['/agent-flow-'+id+'.svg']='agent-flow-'+id+'.svg';
    if(url.pathname==='/'&&!url.searchParams.has('profile')&&!url.searchParams.has('run'))files['/']='welcome.html';
    if(!files[url.pathname]){json(404,{error:'Не найдено'});return;}
    file=path.join(root,'ui',files[url.pathname]);body=fs.readFileSync(file);
