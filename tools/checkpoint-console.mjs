@@ -170,9 +170,10 @@ const server=http.createServer(async(req,res)=>{
   if(url.pathname==='/health'){json(200,{app:'opencode-agent-lab',root,mode:'recording'});return;}
   if(url.pathname==='/api/workshop'){json(200,read(path.join(root,'data/workshop.json')));return;}
   if(url.pathname==='/api/legacy-qwen'){json(200,read(path.join(root,'data/legacy-qwen.json')));return;}
-  if(url.pathname==='/guide.pdf'){
-   const bytes=fs.readFileSync(path.join(root,'docs/pdf/OpenCode-Guide-with-Workflows.pdf'));
-   res.writeHead(200,{'Content-Type':'application/pdf','Content-Disposition':'inline; filename="OpenCode-Guide-with-Workflows.pdf"','Cache-Control':'no-store'});res.end(bytes);return;
+  if(url.pathname==='/guide.pdf'||url.pathname==='/setup.pdf'){
+   const name=url.pathname==='/setup.pdf'?'OpenCode-API-Setup-Annotated.pdf':'OpenCode-Guide-with-Workflows.pdf';
+   const bytes=fs.readFileSync(path.join(root,'docs/pdf',name));
+   res.writeHead(200,{'Content-Type':'application/pdf','Content-Disposition':'inline; filename="'+name+'"','Cache-Control':'no-store'});res.end(bytes);return;
   }
   let file,body;
   const product=url.pathname.match(/^\/product\/(claude|qwen)\/(.*)$/);
