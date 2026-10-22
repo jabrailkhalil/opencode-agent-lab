@@ -14,12 +14,11 @@ const start=(title,height)=>`<svg xmlns="http://www.w3.org/2000/svg" width="1260
 const end='</g></svg>\n';
 function timeline(run){
  const rows=run.stages.filter(s=>s.role!=='operator'),hasPrepared=run.stages.at(-1).role==='operator';
- const top=280,rowH=132,height=top+rows.length*rowH+(hasPrepared?130:80);
+ const top=158,rowH=132,height=top+rows.length*rowH+(hasPrepared?130:80);
  let out=start(run.label+' · порядок заданий',height)+txt(32,46,run.label,28,'#273249',700)+txt(32,78,'Порядок отправки заданий и передачи файлов · источник: сохранённые этапы прогона',16,'#748299');
- out+=rect(32,102,1196,102,'#edf2ff','#d7e0fa')+txt(52,132,'Ведущий управляет каждым обращением',20,'#3b55a0',650)+txt(52,160,'Выбирает роль → передаёт конкретные входы → отправляет промпт → получает ответ и файлы.',17)+txt(52,186,'Следующее задание может снова получить аналитик, дизайнер или тестировщик. Роли не вызывают друг друга.',16,'#65748a');
- out+=txt(32,237,'№',14,'#748299');roleOrder.forEach((role,i)=>out+=txt(87+i*158,237,roleNames[role],16,colors[role],650));
- out+=txt(738,237,'Вход → действие → результат',16,'#65748a',650);
- for(let i=0;i<4;i++)out+=`<path d="M${151+i*158} 252 V${top+rows.length*rowH-12}" stroke="#e1e7f0" stroke-dasharray="4 6"/>`;
+ out+=txt(32,115,'№',14,'#748299');roleOrder.forEach((role,i)=>out+=txt(87+i*158,115,roleNames[role],16,colors[role],650));
+ out+=txt(738,115,'Вход → действие → результат',16,'#65748a',650);
+ for(let i=0;i<4;i++)out+=`<path d="M${151+i*158} 130 V${top+rows.length*rowH-12}" stroke="#e1e7f0" stroke-dasharray="4 6"/>`;
  rows.forEach((s,i)=>{
   const y=top+i*rowH,j=roleOrder.indexOf(s.role),cx=151+j*158,f=handoffFor(s,run);
   if(i){const prev=151+roleOrder.indexOf(rows[i-1].role)*158,py=y-rowH+88;out+=`<path d="M${prev} ${py} V${y-19} H${cx} V${y-3}" fill="none" stroke="#9ba9bf" stroke-width="1.8" marker-end="url(#arrow)"/>`;}

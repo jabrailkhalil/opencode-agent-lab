@@ -213,6 +213,7 @@ const server=http.createServer(async(req,res)=>{
    Object.assign(files,{'/run-metrics.js':'run-metrics.js','/agent-flow-spec.svg':'agent-flow-spec.svg','/agent-flow-direct.svg':'agent-flow-direct.svg','/spec-ui-contract.md':'spec-ui-contract.md','/material-routes.js':'material-routes.js','/comparison-sections.js':'comparison-sections.js','/parallel':'parallel.html','/parallel.js':'parallel.js','/parallel.css':'parallel.css','/legacy-qwen.js':'legacy-qwen.js','/legacy-qwen.css':'legacy-qwen.css'});
    files['/welcome']='welcome.html';
    files['/qwen3-coder-preview.png']='assets/qwen3-coder-preview.png';
+   files['/spec-driven-overview.jpeg']='assets/spec-driven-overview.jpeg';
    files['/agent-workflows.js']='agent-workflows.js';
    for(const id of ['sonnet-spec','sonnet-direct','qwen-spec','qwen-direct'])files['/agent-flow-'+id+'.svg']='agent-flow-'+id+'.svg';
    if(url.pathname==='/'&&!url.searchParams.has('profile')&&!url.searchParams.has('run'))files['/']='welcome.html';

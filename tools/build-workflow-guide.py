@@ -120,13 +120,10 @@ for run in sorted(model, key=lambda r: ['qwen-spec','qwen-direct','sonnet-spec',
         subset = rows[part*6:(part+1)*6]
         begin(run['label']+' | порядок заданий '+str(part+1)+'/'+str(parts),
               'Каждая строка - новое обращение ведущего. Читайте сверху вниз; возврат роли показан отдельной строкой.')
-        box(28, 84, W-56, 39, '#edf2ff')
-        para('Выбор роли -> конкретные документы и наблюдения -> ответ и сохранённые файлы. Номер = обращение, не общий круг четырёх агентов.',
-             39, 93, W-78, 10)
         for j, role in enumerate(ORDER):
-            para(ROLE[role][0], 54+j*83, 137, 81, 10, ROLE[role][1], True)
-        para('Вход / задание / результат', 409, 137, 390, 10, MUTED, True)
-        top, step = 164, 60
+            para(ROLE[role][0], 54+j*83, 98, 81, 10, ROLE[role][1], True)
+        para('Вход / задание / результат', 409, 98, 390, 10, MUTED, True)
+        top, step = 125, 60
         for k, s in enumerate(subset):
             y = top+k*step
             idx = ORDER.index(s['role'])
@@ -144,7 +141,7 @@ for run in sorted(model, key=lambda r: ['qwen-spec','qwen-direct','sonnet-spec',
             for n, (label, key) in enumerate([('Вход','input'),('Задача','action'),('Выход','output')]):
                 para(label, 414, y+3+n*17, 36, 7.5, MUTED, True)
                 para(s[key], 453, y+3+n*17, W-493, 7.8, INK)
-        note_y = 536
+        note_y = 497
         if run['spec']:
             text = ('qspec-11: аналитик фиксирует новые WHEN/THEN и уточняет tasks.md; непроверенные пункты остаются открыты.' if run['id']=='qwen-spec' else
                     'Sonnet завершает итогом FINAL.md; отдельного заключительного задания на обновление spec.md в этой записи нет.')

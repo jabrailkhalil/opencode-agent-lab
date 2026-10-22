@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 cd -- "$(dirname -- "$0")"
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+export PATH="$PWD/.runtime/node/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
 if ! command -v node >/dev/null || ! command -v npm >/dev/null; then
   echo "Install Node.js 22.14+ or 24 LTS from https://nodejs.org/en/download, then run this file again."
   read -r -p "Press Enter to close. "
